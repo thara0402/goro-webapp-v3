@@ -1,5 +1,7 @@
 # Kodoku no Gourmet Pilgrimage Site
 
+[![Build and deploy](https://github.com/thara0402/goro-webapp-v3/actions/workflows/main_goro-v3.yml/badge.svg)](https://github.com/thara0402/goro-webapp-v3/actions/workflows/main_goro-v3.yml)
+
 This website provides information about restaurants featured in the TV drama "Kodoku no Gourmet," starring Yutaka Matsushige.
 
 ## Running in Visual Studio
