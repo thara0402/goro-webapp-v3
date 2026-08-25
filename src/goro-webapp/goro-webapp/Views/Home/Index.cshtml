@@ -1,0 +1,63 @@
+@model goro_webapp.Models.GourmetIndexViewModel
+
+@{
+    ViewData["Title"] = "ホーム";
+}
+
+<h1 class="page-title">孤独のグルメ</h1>
+
+<div class="filter-toolbar mb-4">
+    <form method="get" asp-action="Index">
+        <div class="d-flex align-items-center gap-3 flex-wrap">
+            <div class="filter-label">
+                <span class="filter-icon">&#9776;</span>
+                <span>絞り込み</span>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <label for="season" class="filter-item-label">シーズン</label>
+                @Html.DropDownList("season", Model.Seasons, new { @class = "form-select form-select-sm filter-select", onchange = "this.form.submit()" })
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="card shadow-sm">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped align-middle mb-0">
+            <thead class="thead-navy">
+                <tr>
+                    <th class="ps-3">
+                        @Html.DisplayNameFor(model => model.Gourmets.First().Episode)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gourmets.First().Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gourmets.First().Restaurant)
+                    </th>
+                    <th class="pe-3"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Gourmets)
+                {
+                    <tr>
+                        <td class="ps-3">
+                            @Html.DisplayFor(model => item.Episode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.Restaurant)
+                        </td>
+                        <td class="pe-3 text-end">
+                            <a asp-action="Details" asp-route-id="@item.Id" asp-route-returnUrl="@Url.Action("Index", new { season = Model.SelectedSeason })"
+                               class="btn btn-outline-primary btn-sm">詳細</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

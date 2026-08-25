@@ -1,0 +1,93 @@
+@model goro_webapp.Models.Gourmet
+
+@{
+    ViewData["Title"] = "店舗詳細";
+}
+
+<h1 class="page-title">店舗詳細</h1>
+
+<div class="detail-card card shadow-sm mb-4">
+    <div class="detail-card-header">
+        <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="badge detail-badge-season">Season @Html.DisplayFor(model => model.Season)</span>
+            <span class="badge detail-badge-episode">第 @Html.DisplayFor(model => model.Episode) 話</span>
+        </div>
+        <h2 class="detail-restaurant-name">@Html.DisplayFor(model => model.Restaurant)</h2>
+        <p class="detail-episode-title mb-0">@Html.DisplayFor(model => model.Title)</p>
+    </div>
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-sm-6">
+                <div class="detail-info-item">
+                    <span class="detail-info-label">@Html.DisplayNameFor(model => model.Access)</span>
+                    <span class="detail-info-value">@Html.DisplayFor(model => model.Access)</span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="detail-info-item">
+                    <span class="detail-info-label">@Html.DisplayNameFor(model => model.PhoneNumber)</span>
+                    <span class="detail-info-value">@Html.DisplayFor(model => model.PhoneNumber)</span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="detail-info-item">
+                    <span class="detail-info-label">@Html.DisplayNameFor(model => model.Address)</span>
+                    <span class="detail-info-value">@Html.DisplayFor(model => model.Address)</span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="detail-info-item">
+                    <span class="detail-info-label">@Html.DisplayNameFor(model => model.Status)</span>
+                    <span class="detail-info-value">@Html.DisplayFor(model => model.Status)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.Geo != null && Model.Geo.Coordinates.Length == 2)
+{
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-white py-3">
+            <h2 class="h6 mb-0 fw-semibold text-secondary">地図</h2>
+        </div>
+        <div class="card-body p-0">
+            <div id="map" class="map-container"></div>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script>
+            function initMap() {
+                const lat = @Model.Geo.Coordinates[1].ToString(System.Globalization.CultureInfo.InvariantCulture);
+                const lng = @Model.Geo.Coordinates[0].ToString(System.Globalization.CultureInfo.InvariantCulture);
+                const position = { lat: lat, lng: lng };
+                const map = new google.maps.Map(document.getElementById("map"), {
+                    center: position,
+                    zoom: 16,
+                });
+                new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    title: "@Html.Raw(Model.Restaurant)"
+                });
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=@ViewData["GoogleMapsApiKey"]&callback=initMap" async defer></script>
+    }
+}
+
+<div class="mt-3">
+    @if (ViewData["ReturnUrl"] is string returnUrl)
+    {
+        <a href="@returnUrl" class="btn btn-outline-secondary">
+            &laquo; 一覧に戻る
+        </a>
+    }
+    else
+    {
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            &laquo; 一覧に戻る
+        </a>
+    }
+</div>

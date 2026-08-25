@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="goro-webapp.Tests/goro-webapp.Tests.csproj" Id="3fb7851a-a757-486b-bc25-f563b0fb81ff" />
+  <Project Path="goro-webapp/goro-webapp.csproj" />
+</Solution>

@@ -1,0 +1,32 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "エラー";
+}
+
+<h1 class="page-title">エラーが発生しました</h1>
+
+<div class="alert alert-danger" role="alert">
+    <h2 class="alert-heading h5">リクエストの処理中にエラーが発生しました。</h2>
+    @if (Model.ShowRequestId)
+    {
+        <hr />
+        <p class="mb-0 small">
+            <strong>Request ID:</strong> <code>@Model.RequestId</code>
+        </p>
+    }
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-header bg-white py-3">
+        <h2 class="h6 mb-0 fw-semibold text-secondary">開発者向け情報</h2>
+    </div>
+    <div class="card-body text-secondary small">
+        <p>
+            <strong>Development</strong> 環境に切り替えると、エラーの詳細情報が表示されます。
+        </p>
+        <p class="mb-0">
+            ただし、<strong>本番環境では Development モードを有効にしないでください。</strong>
+            ローカルデバッグには、環境変数 <strong>ASPNETCORE_ENVIRONMENT</strong> を <strong>Development</strong> に設定してアプリを再起動してください。
+        </p>
+    </div>
+</div>
