@@ -31,21 +31,19 @@ public sealed class GeocodeServiceClientTests
     }
 
     /// <summary>
-    /// HTTP レスポンスが失敗の場合に null を返すことを確認します。
+    /// HTTP レスポンスが失敗の場合に HttpRequestException をスローすることを確認します。
     /// </summary>
 
 
     [TestMethod]
-    public async Task GeocodeAsync_ResponseIsFailure_ReturnsNull()
+    public async Task GeocodeAsync_ResponseIsFailure_ThrowsHttpRequestException()
     {
         var client = new GeocodeServiceClient(CreateHttpClient(HttpStatusCode.BadRequest, "{}"), Options.Create(new MySettings
         {
             GoogleGeocodingApiKey = "dummy"
         }));
 
-        var result = await client.GeocodeAsync("tokyo");
-
-        Assert.IsNull(result);
+        await Assert.ThrowsExactlyAsync<HttpRequestException>(() => client.GeocodeAsync("tokyo"));
     }
 
     /// <summary>

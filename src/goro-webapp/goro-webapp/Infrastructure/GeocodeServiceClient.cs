@@ -27,7 +27,8 @@ namespace goro_webapp.Infrastructure
         /// 指定された住所をジオコーディングし、緯度と経度を返します。
         /// </summary>
         /// <param name="address">緯度・経度へ変換する住所または場所。</param>
-        /// <returns>取得した座標。住所が空、リクエスト失敗、または座標を取得できない場合は null。</returns>
+        /// <returns>取得した座標。住所が空、または座標を取得できない場合は null。</returns>
+        /// <exception cref="HttpRequestException">HTTP リクエストが失敗した場合。</exception>
         public async Task<(double Latitude, double Longitude)?> GeocodeAsync(string address)
         {
             // 空の住所は API を呼び出さず、座標なしとして扱う。
@@ -39,11 +40,8 @@ namespace goro_webapp.Infrastructure
             // 住所を URL 用にエンコードして API リクエストを組み立てる。
             var url = $"https://maps.googleapis.com/maps/api/geocode/json?address={Uri.EscapeDataString(address)}&key={_apiKey}";
             var response = await _httpClient.GetAsync(url);
-            // HTTP レベルで失敗した場合は、レスポンスを解析せず終了する。
-            if (!response.IsSuccessStatusCode)
-            {
-                return null;
-            }
+            // HTTP レベルで失敗した場合は HttpRequestException をスローする。
+            response.EnsureSuccessStatusCode();
 
             // API レスポンスの JSON から検索結果と座標を読み取る。
             var json = await response.Content.ReadAsStringAsync();

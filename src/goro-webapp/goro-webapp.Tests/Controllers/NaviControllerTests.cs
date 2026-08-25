@@ -39,7 +39,7 @@ public sealed class NaviControllerTests
     }
 
     /// <summary>
-    /// ジオコーディングに失敗した場合にリポジトリを呼び出さないことを確認します。
+    /// ジオコーディングで座標を取得できなかった場合にリポジトリを呼び出さないことを確認します。
     /// </summary>
 
 

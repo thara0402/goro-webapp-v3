@@ -45,7 +45,17 @@ namespace goro_webapp.Controllers
             }
 
             // 検索文字列を緯度・経度へ変換し、周辺店舗を検索できるようにする。
-            var location = await _serviceClient.GeocodeAsync(query);
+            (double Latitude, double Longitude)? location;
+            try
+            {
+                location = await _serviceClient.GeocodeAsync(query);
+            }
+            catch (HttpRequestException)
+            {
+                // HTTP レベルで失敗した場合は、検索条件を保持した画面を表示する。
+                return View(viewModel);
+            }
+
             // 位置情報を取得できない場合は、検索条件を保持した画面を表示する。
             if (location is null)
             {
