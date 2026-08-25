@@ -90,6 +90,7 @@ public class GourmetRepository
 - ローカル開発では ASP.NET Core の User Secrets を利用し、秘密情報は `secrets.json` に保存する。
 - 既存のプロジェクトでは `UserSecretsId` を定義しており、秘密情報をローカルユーザー環境に隔離して管理する設計とする。
 - アプリで利用する秘密項目は、`CosmosConnection`、`AppInsightsConnectionString`、`GoogleMapsApiKey`、`GoogleGeocodingApiKey` の 4 つとし、`WebApp` セクションから読み込む。
+- Azure Key Vault へ登録するシークレット名は、構成セクションの階層区切りとして `--` を使用し、WebApp--AppInsightsConnectionString のように登録する。
 - 取得した値は `builder.Services.Configure<MySettings>(builder.Configuration.GetSection("WebApp"));` により `MySettings` クラスへバインドし、アプリケーションの各サービスで型安全に利用する。
 - これにより、開発用と本番用の設定を分離し、API キーや接続文字列の漏えいリスクを低減する。
 
