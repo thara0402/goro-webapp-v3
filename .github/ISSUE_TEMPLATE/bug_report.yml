@@ -1,0 +1,130 @@
+name: バグ報告
+description: AI 駆動開発で修正したい不具合を報告する
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        「孤独のグルメ」巡礼サイトで発生した不具合を記載してください。
+        AI エージェントが再現・原因調査・修正・検証へ進みやすいように、発生箇所と期待動作を具体化してください。
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: 概要
+      description: 不具合の内容を 1〜3 文で説明してください。
+      placeholder: 例）近くの店舗を探すページで、特定の地名を入力すると検索結果が表示されない。
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affected-area
+    attributes:
+      label: 発生箇所
+      description: 不具合が発生している画面または機能を選択してください。
+      multiple: true
+      options:
+        - ホーム（シーズン・話別の店舗一覧）
+        - 店舗詳細（店舗情報・Google Maps）
+        - 近くの店舗を探す（Geocoding・近隣検索）
+        - 店舗データ（design/gourmet.json・Cosmos DB）
+        - 共通 UI・ナビゲーション
+        - Azure / Application Insights / 運用
+        - テスト・開発環境
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: 再現手順
+      description: できるだけ具体的な操作手順、入力値、URL、選択したシーズン・話数・店舗名を記載してください。
+      placeholder: |
+        1. 「近くの店舗を探す」を開く
+        2. 入力欄に「門前仲町」と入力する
+        3. 検索ボタンを押す
+        4. 結果一覧を確認する
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: 実際の動作
+      description: 実際に起きたこと、エラーメッセージ、ログ、画面表示を記載してください。
+      placeholder: 例）検索結果が空になり、エラーメッセージも表示されない。
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: 期待する動作
+      description: 本来どう動くべきかを記載してください。
+      placeholder: 例）座標変換に成功し、距離の近い順に最大 10 件の店舗が表示される。
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected-data
+    attributes:
+      label: 関連する店舗データ・入力値
+      description: 該当する Season、Episode、Restaurant、住所、検索キーワードなどがあれば記載してください。
+      placeholder: |
+        例）
+        - Season: 1
+        - Episode: 1
+        - Restaurant: 庄助
+        - 検索キーワード: 門前仲町
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 実行環境
+      description: 分かる範囲でブラウザー、実行方法、環境を記載してください。
+      placeholder: |
+        例）
+        - Browser: Microsoft Edge
+        - Environment: ローカル https://localhost:7159
+        - Runtime: .NET 10
+        - Hosting: Azure App Service / ローカル
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: ログ・スクリーンショット・補足情報
+      description: Application Insights、コンソール、例外スタックトレース、スクリーンショットなどがあれば貼り付けてください。シークレットや API キーは含めないでください。
+      render: text
+    validations:
+      required: false
+
+  - type: textarea
+    id: ai-instructions
+    attributes:
+      label: AI エージェントへの補足指示
+      description: 調査してほしい観点、変更してほしくない範囲、優先度があれば記載してください。
+      placeholder: |
+        例）
+        - design/spec.md と design/data-model.md の仕様に沿って修正する
+        - Google Maps / Geocoding API キーはログや Issue に出力しない
+        - 既存の画面遷移は変更しない
+    validations:
+      required: false
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: 修正完了の条件
+      description: 修正後に満たしてほしい条件をチェックリストで記載してください。
+      placeholder: |
+        - [ ] 記載した手順で不具合が再現しない
+        - [ ] 期待する検索結果またはエラー表示になる
+        - [ ] 関連する単体テストまたは手動確認が完了している
+    validations:
+      required: true
