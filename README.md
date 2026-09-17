@@ -4,6 +4,21 @@
 
 This website provides information about restaurants featured in the TV drama "Kodoku no Gourmet," starring Yutaka Matsushige.
 
+## Creating Issues from Chat
+
+This project uses GitHub Issues as the starting point for AI-driven development. When asking chat to create an issue, include the issue type, title, goal, affected area, and acceptance criteria.
+
+Example:
+
+```text
+Create a GitHub Issue.
+Type: Feature request.
+Title: Add a restaurant status filter to the restaurant list.
+Goal: Make it easier to find restaurants that are currently visitable.
+Affected area: Home page and restaurant data.
+Acceptance criteria: Users can filter by active, closed, temporarily closed, and unknown statuses; the status filter works together with the existing season filter; dotnet test passes.
+```
+
 ## Running in Visual Studio
 
 ### Prerequisites
