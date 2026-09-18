@@ -1,7 +1,6 @@
 # Kodoku no Gourmet Pilgrimage Site
 
 [![Build and deploy](https://github.com/thara0402/goro-webapp-v3/actions/workflows/main_goro-v3.yml/badge.svg)](https://github.com/thara0402/goro-webapp-v3/actions/workflows/main_goro-v3.yml)
-[![Test ASP.Net Core app - goro-v3](https://github.com/thara0402/goro-webapp-v3/actions/workflows/main_goro-v3-test.yml/badge.svg)](https://github.com/thara0402/goro-webapp-v3/actions/workflows/main_goro-v3-test.yml)
 
 This website provides information about restaurants featured in the TV drama "Kodoku no Gourmet," starring Yutaka Matsushige.
 
@@ -75,4 +74,4 @@ Run the .NET test suite from the repository root:
 dotnet test .\src\goro-webapp\goro-webapp.slnx --no-restore
 ```
 
-GitHub Actions also runs the `Test ASP.Net Core app - goro-v3` workflow on branch pushes and pull requests targeting `main`.
+GitHub Actions runs the `Test ASP.Net Core app - goro-v3` workflow for pull requests targeting `main`. After a pull request is merged, the deployment workflow runs the test suite again before publishing and deploying the application.
