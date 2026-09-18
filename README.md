@@ -1,6 +1,7 @@
 # Kodoku no Gourmet Pilgrimage Site
 
 [![Build and deploy](https://github.com/thara0402/goro-webapp-v3/actions/workflows/main_goro-v3.yml/badge.svg)](https://github.com/thara0402/goro-webapp-v3/actions/workflows/main_goro-v3.yml)
+[![Test ASP.Net Core app - goro-v3](https://github.com/thara0402/goro-webapp-v3/actions/workflows/main_goro-v3-test.yml/badge.svg)](https://github.com/thara0402/goro-webapp-v3/actions/workflows/main_goro-v3-test.yml)
 
 This website provides information about restaurants featured in the TV drama "Kodoku no Gourmet," starring Yutaka Matsushige.
 
@@ -65,3 +66,13 @@ Open the following URL in your browser:
 ```text
 https://localhost:7159
 ```
+
+## Running Tests
+
+Run the .NET test suite from the repository root:
+
+```powershell
+dotnet test .\src\goro-webapp\goro-webapp.slnx --no-restore
+```
+
+GitHub Actions also runs the `Test ASP.Net Core app - goro-v3` workflow on branch pushes and pull requests targeting `main`.
