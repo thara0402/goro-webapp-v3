@@ -128,3 +128,13 @@ Razor View
 - `DisplayName` や `DataType` などの画面表示用属性は Model 側に定義する。
 
 なお、現状の `Models.Gourmet.Geo` は `Infrastructure.Entity.GeoPoint` を使用しているため、Model から Infrastructure への型依存が存在する。将来、層を完全に分離する必要が生じた場合は、画面用の `GeoPoint` と `GourmetStatus` を Models 側に定義し、AutoMapper で明示的に変換する。
+
+## Quality Gates
+
+アプリケーションの品質を保つため、コード変更はローカル検証と CI 検証の両方を通過してから完了扱いとする。
+
+- Copilot による実装では、完了報告または Pull Request 作成前に、影響範囲に応じたテストをローカルで実行する。
+- このリポジトリでは原則として `dotnet test .\src\goro-webapp\goro-webapp.slnx --no-restore` を実行し、失敗した場合は原因を修正してから完了報告する。
+- テストを実行できない場合は完了扱いにせず、実行できなかった理由と代替確認内容を明示する。
+- CI ではテスト専用 GitHub Actions ワークフローを使用し、`push` と `pull_request` で .NET 10 ソリューションの restore、build、test を実行する。
+- Azure App Service へのビルド・デプロイワークフローは `main` ブランチ向けに維持し、PR や作業ブランチの検証とは責務を分離する。
