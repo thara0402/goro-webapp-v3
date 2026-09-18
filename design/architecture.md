@@ -136,5 +136,5 @@ Razor View
 - Copilot による実装では、完了報告または Pull Request 作成前に、影響範囲に応じたテストをローカルで実行する。
 - このリポジトリでは原則として `dotnet test .\src\goro-webapp\goro-webapp.slnx --no-restore` を実行し、失敗した場合は原因を修正してから完了報告する。
 - テストを実行できない場合は完了扱いにせず、実行できなかった理由と代替確認内容を明示する。
-- CI ではテスト専用 GitHub Actions ワークフローを使用し、`push` と `pull_request` で .NET 10 ソリューションの restore、build、test を実行する。
-- Azure App Service へのビルド・デプロイワークフローは `main` ブランチ向けに維持し、PR や作業ブランチの検証とは責務を分離する。
+- CI ではテスト専用 GitHub Actions ワークフローを使用し、`pull_request` で .NET 10 ソリューションの restore、build、test を実行する。
+- Azure App Service へのビルド・デプロイワークフローは `main` ブランチへの push で起動し、デプロイ用ビルド内で test を成功させてから publish・デプロイへ進む。テスト専用ワークフローは `pull_request` 専用とし、PR マージ後にテストとデプロイが並列実行されないようにする。

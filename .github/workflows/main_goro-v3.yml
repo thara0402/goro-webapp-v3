@@ -27,6 +27,9 @@ jobs:
         run: dotnet build --configuration Release
         working-directory: src/goro-webapp
 
+      - name: Test with dotnet
+        run: dotnet test .\src\goro-webapp\goro-webapp.slnx --configuration Release --no-restore
+
       - name: dotnet publish
         run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
         working-directory: src/goro-webapp
