@@ -80,6 +80,27 @@ Planning ツールでは、少なくとも次の項目を確認してくださ�
 4. 必要な Unit テストも追加または更新する。
 5. 実装完了後、変更内容を簡潔に報告する。
 
+## GitHub Copilot Cloud Agent での作業手順
+
+Cloud Agent が GitHub Issue に対応する場合は、次の順序で作業してください。
+
+1. Issue の目的、対象領域、受け入れ条件、検証観点を確認する。
+2. 影響する `design/` 配下の設計書を確認する。
+3. 設計変更が必要な場合は、実装前に該当する設計書を更新する。
+4. Issue の受け入れ条件を満たすために必要な最小限の実装を行う。
+5. 必要な Unit テストを追加または更新する。
+6. `dotnet test src/goro-webapp/goro-webapp.slnx --no-restore` を実行する。
+7. Pull Request 本文に、変更内容、設計変更の有無、テスト結果、未確認事項を記載する。
+
+Cloud Agent では、作業用ブランチと Pull Request を作成し、最終的な review / merge は人間が行う前提とします。
+
+## Cloud Agent での Secret 方針
+
+- 現時点の Unit テストは Secret を必要としません。
+- Cloud Agent は通常の Unit テスト実行のために、本番用の Cosmos DB、Google Maps / Geocoding API、Application Insights、Azure Key Vault の Secret を要求しないでください。
+- Secret、API key、connection string、Key Vault の値を Issue、Pull Request、ログ、コメントに出力しないでください。
+- Secret が必要な統合テストや本番接続確認は、別途 GitHub Actions Environment または Azure 側の管理下で実施してください。
+
 ## テスト
 
 1. ビルドとテストを実行して確認する。
@@ -90,6 +111,12 @@ Planning ツールでは、少なくとも次の項目を確認してくださ�
 
 ```powershell
 dotnet test .\src\goro-webapp\goro-webapp.slnx --no-restore
+```
+
+Cloud Agent や Linux / macOS 環境では、次のクロスプラットフォーム形式を使用してください。
+
+```bash
+dotnet test src/goro-webapp/goro-webapp.slnx --no-restore
 ```
 
 テストが失敗した場合は完了扱いにせず、原因を修正してから再実行してください。テストを実行できない場合は、実行できなかった理由と代替確認内容を完了報告および Pull Request 本文に明記してください。
