@@ -9,6 +9,7 @@ body:
       value: |
         「孤独のグルメ」巡礼サイトで発生した不具合を記載してください。
         AI エージェントが再現・原因調査・修正・検証へ進みやすいように、発生箇所と期待動作を具体化してください。
+        Cloud Agent に依頼する場合も、本番用の API キー、接続文字列、Key Vault の値は Issue に記載しないでください。
 
   - type: textarea
     id: summary
@@ -105,6 +106,47 @@ body:
       required: false
 
   - type: textarea
+    id: cloud-agent-scope
+    attributes:
+      label: Cloud Agent に依頼する作業範囲
+      description: 再現確認、原因調査、設計書更新、修正、テスト、PR 作成のうち、依頼したい範囲を記載してください。
+      placeholder: |
+        例）
+        - 再現手順に沿って原因を調査する
+        - 必要なら設計書を更新する
+        - 修正と単体テストを追加する
+        - dotnet test を実行して PR を作成する
+    validations:
+      required: false
+
+  - type: textarea
+    id: allowed-changes
+    attributes:
+      label: 変更してよい範囲
+      description: Cloud Agent が変更してよい画面、コード領域、設計書、テストを記載してください。
+      placeholder: |
+        例）
+        - Controllers/NaviController.cs
+        - Infrastructure/GeocodeServiceClient.cs
+        - design/spec.md
+        - goro-webapp.Tests/Controllers/NaviControllerTests.cs
+    validations:
+      required: false
+
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: 変更してほしくない範囲
+      description: 今回の Issue では変更しない範囲を記載してください。
+      placeholder: |
+        例）
+        - Cosmos DB のデータ構造は変更しない
+        - Google Maps / Geocoding API キーは変更しない
+        - 新しい NuGet package は追加しない
+    validations:
+      required: false
+
+  - type: textarea
     id: ai-instructions
     attributes:
       label: AI エージェントへの補足指示
@@ -125,6 +167,7 @@ body:
       placeholder: |
         - [ ] 記載した手順で不具合が再現しない
         - [ ] 期待する検索結果またはエラー表示になる
+        - [ ] dotnet test src/goro-webapp/goro-webapp.slnx --no-restore が成功する
         - [ ] 関連する単体テストまたは手動確認が完了している
     validations:
       required: true

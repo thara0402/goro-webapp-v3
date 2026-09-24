@@ -9,6 +9,7 @@ body:
       value: |
         「孤独のグルメ」巡礼サイトに追加したい機能を記載してください。
         チャットから Issue を作成する場合も、AI エージェントが設計・実装・テストへ進みやすいように、目的・対象画面・受け入れ条件を具体化してください。
+        Cloud Agent に依頼する場合も、本番用の API キー、接続文字列、Key Vault の値は Issue に記載しないでください。
 
   - type: textarea
     id: summary
@@ -88,6 +89,47 @@ body:
       required: true
 
   - type: textarea
+    id: cloud-agent-scope
+    attributes:
+      label: Cloud Agent に依頼する作業範囲
+      description: 設計確認、設計書更新、実装、テスト、PR 作成のうち、依頼したい範囲を記載してください。
+      placeholder: |
+        例）
+        - design/spec.md を確認する
+        - 必要なら設計書を更新する
+        - 実装と単体テストを追加する
+        - dotnet test を実行して PR を作成する
+    validations:
+      required: false
+
+  - type: textarea
+    id: allowed-changes
+    attributes:
+      label: 変更してよい範囲
+      description: Cloud Agent が変更してよい画面、コード領域、設計書、テストを記載してください。
+      placeholder: |
+        例）
+        - Views/Home/Details.cshtml
+        - Controllers/HomeController.cs
+        - design/spec.md
+        - goro-webapp.Tests/Controllers/HomeControllerTests.cs
+    validations:
+      required: false
+
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: 変更してほしくない範囲
+      description: 今回の Issue では変更しない範囲を記載してください。
+      placeholder: |
+        例）
+        - Cosmos DB のデータ構造は変更しない
+        - Google Maps API の呼び出し仕様は変更しない
+        - 新しい NuGet package は追加しない
+    validations:
+      required: false
+
+  - type: textarea
     id: ai-instructions
     attributes:
       label: AI エージェントへの補足指示
@@ -107,7 +149,7 @@ body:
       description: 実行してほしいテストや手動確認観点を記載してください。
       placeholder: |
         例）
-        - dotnet test src/goro-webapp/goro-webapp.slnx
+        - dotnet test src/goro-webapp/goro-webapp.slnx --no-restore
         - Home/Details で各営業状態の表示を確認する
     validations:
       required: false

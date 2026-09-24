@@ -19,6 +19,28 @@ Affected area: Home page and restaurant data.
 Acceptance criteria: Users can filter by active, closed, temporarily closed, and unknown statuses; the status filter works together with the existing season filter; dotnet test passes.
 ```
 
+## AI-driven Development with GitHub Copilot Cloud Agent
+
+This repository can use GitHub Issues as the starting point for AI-driven development with GitHub Copilot Cloud Agent.
+
+Recommended flow:
+
+1. Create a GitHub Issue using the issue template.
+2. Include the goal, affected area, acceptance criteria, allowed change scope, out-of-scope items, and validation command.
+3. Ask GitHub Copilot Cloud Agent to work on the issue from the issue page.
+4. The agent checks the design documents, updates design files if needed, implements the change, adds or updates tests, and opens a pull request.
+5. Review the pull request and GitHub Actions checks in GitHub.
+6. Ask the agent for follow-up fixes if needed.
+7. Merge the pull request manually after review and successful checks.
+
+Validation command for normal unit-test-driven development:
+
+```bash
+dotnet test src/goro-webapp/goro-webapp.slnx --no-restore
+```
+
+The current unit tests do not require production secrets. Do not provide production Cosmos DB, Google API, Application Insights, or Key Vault secrets to the agent for normal unit-test-driven development. Production secrets are handled by Azure App Service, Azure Key Vault, and GitHub Actions deployment settings.
+
 ## Running in Visual Studio
 
 ### Prerequisites
