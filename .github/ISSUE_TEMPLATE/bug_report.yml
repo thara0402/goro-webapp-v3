@@ -64,7 +64,7 @@ body:
     attributes:
       label: 期待する動作
       description: 本来どう動くべきかを記載してください。
-      placeholder: 例）座標変換に成功し、距離の近い順に最大 10 件の店舗が表示される。
+      placeholder: 例）座標変換に成功し、距離の近い順に最大 15 件の店舗が表示される。
     validations:
       required: true
 
