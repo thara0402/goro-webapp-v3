@@ -63,7 +63,7 @@ namespace goro_webapp.Controllers
             }
 
             // 取得した座標を使って、周辺の店舗を検索する。
-            var items = await _repository.GetNearestAsync(location.Value.Latitude, location.Value.Longitude);
+            var items = await _repository.GetNearestAsync(location.Value.Latitude, location.Value.Longitude, 10);
             // 検索結果を画面表示用のモデルへ変換する。
             viewModel.Gourmets = _mapper.Map<IEnumerable<Gourmet>>(items);
 
