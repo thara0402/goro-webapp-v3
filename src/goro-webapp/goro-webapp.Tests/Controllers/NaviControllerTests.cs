@@ -85,7 +85,7 @@ public sealed class NaviControllerTests
         };
 
         var repository = new Mock<IGourmetRepository>();
-        repository.Setup(x => x.GetNearestAsync(35.1, 139.2, 15)).ReturnsAsync(entities);
+        repository.Setup(x => x.GetNearestAsync(35.1, 139.2, 20)).ReturnsAsync(entities);
 
         var geocodeService = new Mock<IGeocodeServiceClient>();
         geocodeService.Setup(x => x.GeocodeAsync("shibuya")).ReturnsAsync((35.1, 139.2));
@@ -105,7 +105,7 @@ public sealed class NaviControllerTests
         Assert.AreEqual("a", gourmets[0].Id);
         Assert.AreEqual("b", gourmets[1].Id);
 
-        repository.Verify(x => x.GetNearestAsync(35.1, 139.2, 15), Times.Once);
+        repository.Verify(x => x.GetNearestAsync(35.1, 139.2, 20), Times.Once);
         mapper.Verify(x => x.Map<IEnumerable<goro_webapp.Models.Gourmet>>(entities), Times.Once);
     }
 }
