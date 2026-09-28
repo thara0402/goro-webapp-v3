@@ -25,6 +25,6 @@ namespace goro_webapp.Infrastructure
         /// <param name="longitude">検索地点の経度。</param>
         /// <param name="count">取得する店舗数。省略時は 10。</param>
         /// <returns>指定地点から近い順に並んだ店舗一覧。</returns>
-        Task<IList<Gourmet>> GetNearestAsync(double latitude, double longitude, int count = 15);
+        Task<IList<Gourmet>> GetNearestAsync(double latitude, double longitude, int count = 10);
     }
 }
