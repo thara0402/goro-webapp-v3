@@ -10,8 +10,6 @@ namespace goro_webapp.Controllers
     /// </summary>
     public class NaviController : Controller
     {
-        private const int MaxGourmetCount = 10;
-
         private readonly IGourmetRepository _repository;
         private readonly IGeocodeServiceClient _serviceClient;
         private readonly IMapper _mapper;
@@ -65,9 +63,9 @@ namespace goro_webapp.Controllers
             }
 
             // 取得した座標を使って、周辺の店舗を検索する。
-            var items = await _repository.GetNearestAsync(location.Value.Latitude, location.Value.Longitude, MaxGourmetCount);
+            var items = await _repository.GetNearestAsync(location.Value.Latitude, location.Value.Longitude, 10);
             // 検索結果を画面表示用のモデルへ変換する。
-            viewModel.Gourmets = _mapper.Map<IEnumerable<Gourmet>>(items).Take(MaxGourmetCount).ToList();
+            viewModel.Gourmets = _mapper.Map<IEnumerable<Gourmet>>(items);
 
             return View(viewModel);
         }
