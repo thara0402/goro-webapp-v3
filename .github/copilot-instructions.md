@@ -19,9 +19,12 @@
 ```text
 goro-webapp-v3/                      # リポジトリルート
 ├── .github/
+│   ├── agents/                      # GitHub Copilot カスタムエージェント
 │   ├── skills/                      # GitHub Copilot スキル
 │   ├── workflows/                   # GitHub Actions などのワークフロー
-│   └── copilot-instructions.md      # Copilot 用指示書
+│   ├── commit-instructions.md       # コミットメッセージ規約
+│   ├── copilot-instructions.md      # Copilot 用指示書
+│   └── pull_request_template.md     # Pull Request テンプレート
 ├── design/                          # 設計書
 ├── README.md                        # プロジェクト概要と利用方法
 │
@@ -49,104 +52,85 @@ goro-webapp-v3/                      # リポジトリルート
 
 > 設計に変更が入った場合は、必ず該当する設計書を先に更新してください。実装とテストは、更新後の設計書に基づいて行います。
 
+### その他
+
+- **開発ワークフロー**: `design/workflow.md`（開発工程と品質ゲートの定義。アプリケーションの設計ではないため、実装やテストの前に確認する設計書には含まれません）
+
 ## 制約
 
-- **Planning ツールが利用可能な環境では、Planning ツールを実行して計画が確定するまで、ファイルを作成・編集・削除しないでください。**
-- コード、設定、設計書、データ定義を変更する可能性がある場合は、実装前に必ず Planning ツールで計画を作成してください。Planning ツールが利用できない環境に限り、チャットの回答に計画を記載することで代用できます。
+- **コード、設定、設計書、データ定義を変更する可能性がある場合は、Planning ツールで計画を作成し、確定するまでファイルを作成・編集・削除しないでください。** Planning ツールが利用できない環境では、「計画（Planning の必須項目）」を満たす計画をチャットの回答に記載してから変更を開始してください。
 - ユーザーが実装を明示的に依頼していない相談・質問では、Planning ツールやファイル変更を行わず、必要に応じて計画案だけを説明してください。
-- Planning ツールが利用できない場合は、ファイル変更を開始する前に、Planning の必須項目を満たす実装計画をチャットの回答に記載してください。
+- `orchestrator` から担当エージェント（`architect`、`developer`、`reviewer`）として呼び出された場合は、受け取った依頼内容と承認済みの設計レポートを確定した計画として扱い、Planning ツールを改めて実行する必要はありません。
 
-## Planning の必須項目
+## Secret 方針
+
+- 現時点の Unit テストは Secret を必要としません。
+- ローカル実行・Cloud Agent のいずれでも、通常の Unit テスト実行のために、本番用の Cosmos DB、Google Maps / Geocoding API、Application Insights、Azure Key Vault の Secret を要求しないでください。
+- Secret、API key、connection string、Key Vault の値をコード、設定ファイル、Issue、Pull Request、ログ、コメントに出力しないでください。
+- Secret が必要な統合テストや本番接続確認は、別途 GitHub Actions Environment または Azure 側の管理下で実施してください。
+
+## 作業手順
+
+この手順は、「カスタムエージェント」の節で `orchestrator` を使わなくてよいとされた変更（例外）にだけ適用します。アプリケーションの変更には適用しません。
+
+### 計画（Planning の必須項目）
 
 Planning ツールでは、少なくとも次の項目を確認してください。
 
-1. 変更対象のファイルと担当するコード領域
-2. 仕様・設計書との関係、および必要な設計変更
-3. 実装手順、検証方法、想定される影響
+1. 変更対象のファイルと目的
+2. 関連するドキュメント・設定・エージェント定義との整合
+3. 変更手順、検証方法、想定される影響
 
-### 設計変更を含む場合
+> 計画後に要件や対象ファイルが変わった場合は、変更を続けず、Planning ツールを再実行して計画を更新してください。変更が `src/goro-webapp/` または `design/`（`design/workflow.md` を除く）に及ぶ場合は、例外の対象外になるため `orchestrator` に切り替えてください。
 
-1. Planning の計画に設計書の更新を含める。
-2. 設計書を先に更新する。
-3. 実装とテストを更新後の設計書に基づいて行う。
+### 変更
 
-> 計画後に要件、対象ファイル、設計が変わった場合は、実装を続けず、Planning ツールを再実行して計画を更新してください。
+1. Issue または依頼内容の目的、対象ファイル、完了条件を確認する。
+2. 確定した計画に基づいて、既存の記述スタイルに合わせて必要な最小限の変更を行う。
+3. 設定、CI、エージェント定義など、ビルドやテストに影響し得る変更の場合は、「テスト」の節に従ってテストを実行する。
+4. 変更完了後、変更内容を簡潔に報告する。
 
-## 実装手順
+### 実行環境ごとの違い
 
-1. 確定した実装計画と最新の設計書を確認する。
-2. 計画に基づいて実装する。
-3. 既存のコードスタイルに合わせて実装する。
-4. 必要な Unit テストも追加または更新する。
-5. 実装完了後、変更内容を簡潔に報告する。
+| 環境 | 開始方法 | 計画の確定 | 完了時 |
+| --- | --- | --- | --- |
+| ローカル実行（GitHub Copilot App / VS Code） | チャットで依頼 | Planning ツールで確定する | チャットで報告する |
+| GitHub Copilot Cloud Agent | Issue の割り当て | 計画を Pull Request 本文に記載する | 作業用ブランチと Pull Request を作成し、本文は `.github/pull_request_template.md` に従って変更内容、設計変更の有無、テスト結果、未確認事項を記載する。最終的な review / merge は人間が行う |
 
-## GitHub Copilot Cloud Agent での作業手順
+## カスタムエージェント
 
-Cloud Agent が GitHub Issue に対応する場合は、次の順序で作業してください。
+Issue とチャットのどちらを起点にする場合でも、アプリケーションの変更は `.github/agents/` の `orchestrator` を選択して行います。工程、担当エージェント（`architect`、`developer`、`reviewer`）の役割と権限、承認ゲート、工程実行記録は `design/workflow.md` に定義しています。
 
-1. Issue の目的、対象領域、受け入れ条件、検証観点を確認する。
-2. 影響する `design/` 配下の設計書を確認する。
-3. 設計変更が必要な場合は、実装前に該当する設計書を更新する。
-4. Issue の受け入れ条件を満たすために必要な最小限の実装を行う。
-5. 必要な Unit テストを追加または更新する。
-6. `dotnet test src/goro-webapp/goro-webapp.slnx --no-restore` を実行する。
-7. Pull Request 本文に、変更内容、設計変更の有無、テスト結果、未確認事項を記載する。
+| 変更対象 | 進め方 |
+| --- | --- |
+| `src/goro-webapp/` と `design/`（`design/workflow.md` を除く） | 必ず `orchestrator` を使う |
+| `README.md`、`.github/`、`design/workflow.md`（CI を含む） | 例外として、「作業手順」の節に従って進めてよい |
 
-Cloud Agent では、作業用ブランチと Pull Request を作成し、最終的な review / merge は人間が行う前提とします。
-
-## Cloud Agent での Secret 方針
-
-- 現時点の Unit テストは Secret を必要としません。
-- Cloud Agent は通常の Unit テスト実行のために、本番用の Cosmos DB、Google Maps / Geocoding API、Application Insights、Azure Key Vault の Secret を要求しないでください。
-- Secret、API key、connection string、Key Vault の値を Issue、Pull Request、ログ、コメントに出力しないでください。
-- Secret が必要な統合テストや本番接続確認は、別途 GitHub Actions Environment または Azure 側の管理下で実施してください。
+- カスタムエージェントを選択していない状態でアプリケーションの変更を依頼された場合は、自分で実装せず、`orchestrator` を選択し直すようユーザーに案内してください。
+- 担当エージェントとして呼び出された場合は、`orchestrator` からの依頼内容と自分のエージェント定義に従ってください。
+- `design/workflow.md` は、ユーザーが明示的に指示した場合を除き、エージェントが編集しないでください。
 
 ## テスト
 
-1. ビルドとテストを実行して確認する。
-2. 失敗した場合は原因を調査して修正する。
-3. テスト完了後、確認結果を簡潔に報告する。
-4. コード、設定、設計書、テストを変更した場合は、完了報告または Pull Request 作成前に必ず影響範囲に対応するテストを実行する。
-5. このリポジトリでは原則として次のコマンドを実行する。
-
-```powershell
-dotnet test .\src\goro-webapp\goro-webapp.slnx --no-restore
-```
-
-Cloud Agent や Linux / macOS 環境では、次のクロスプラットフォーム形式を使用してください。
+品質ゲートの正式な定義は `design/workflow.md` の「Quality Gates」です。コード、設定、設計書、テストを変更した場合は、完了報告または Pull Request 作成前に次のコマンドを実行してください（Windows / Linux / macOS 共通）。
 
 ```bash
 dotnet test src/goro-webapp/goro-webapp.slnx --no-restore
 ```
 
-テストが失敗した場合は完了扱いにせず、原因を修正してから再実行してください。テストを実行できない場合は、実行できなかった理由と代替確認内容を完了報告および Pull Request 本文に明記してください。
+- テストが失敗した場合、または合計が 0 件の場合は完了扱いにしない。0 件の場合は依存関係が未復元の可能性があるため、`dotnet restore src/goro-webapp/goro-webapp.slnx` を実行してから再実行する。
+- テストを実行できない場合は完了扱いにせず、理由と代替確認内容を完了報告および Pull Request 本文に明記する。
 
 ## スキル
 
-設計から実装・テストまで、該当するフェーズの Copilot スキルを使用してください。
+該当する作業では、次のスキルを使用してください。この表はリポジトリ全体のスキル一覧です。カスタムエージェントごとの割り当ては各エージェント定義の「参照スキル」にあります。スキルを追加・削除した場合は、両方を更新してください。
 
-### 設計・実装・リファクタリング
-
-| スキル | 用途 |
+| スキル | 使う場面 |
 | --- | --- |
-| `cosmosdb-datamodeling` | Cosmos DB のデータモデルを設計する |
-| `dotnet-best-practices` | .NET / C# のベストプラクティスに準拠する |
-| `dotnet10` | .NET 10 / C# 14 の機能や ASP.NET Core 10、EF Core 10 を扱う |
-| `csharp-async` | C# の非同期プログラミングに関するベストプラクティスを適用する |
-| `microsoft-docs` | Microsoft Learn の公式ドキュメントで概念、仕様、チュートリアル、コード例を確認する |
-| `microsoft-code-reference` | Microsoft API、Azure SDK、.NET ライブラリの仕様や公式コード例を検証する |
-
-- データ層の設計が必要な場合は `cosmosdb-datamodeling` を使用してください。
-- .NET / C# コードは `dotnet-best-practices` に準拠してください。
-- .NET 10、C# 14、ASP.NET Core 10、または EF Core 10 固有の機能を扱う場合は `dotnet10` を使用してください。
-- C# の非同期処理を扱う場合は `csharp-async` を使用してください。
-- Microsoft 製品・サービスの仕様や公式コード例を確認する必要がある場合は `microsoft-docs` を使用してください。
-- Microsoft API、Azure SDK、または .NET ライブラリのメソッド、引数、バージョン互換性を確認する必要がある場合は `microsoft-code-reference` を使用してください。
-
-### テスト
-
-| スキル | 用途 |
-| --- | --- |
-| `csharp-mstest` | MSTest 3.x/4.x の単体テスト、最新のアサーション API、データ駆動テストのベストプラクティスを適用する |
-
-- MSTest 3.x/4.x を使用した単体テストを実装する場合は `csharp-mstest` を使用してください。
+| `cosmosdb-datamodeling` | Cosmos DB のデータモデルを設計するとき |
+| `dotnet-best-practices` | .NET / C# のコードを書く・レビューするとき（常に準拠する） |
+| `dotnet10` | .NET 10、C# 14、ASP.NET Core 10、EF Core 10 固有の機能を扱うとき |
+| `csharp-async` | C# の非同期処理を扱うとき |
+| `csharp-mstest` | MSTest 3.x/4.x の単体テストを実装するとき |
+| `microsoft-docs` | Microsoft 製品・サービスの仕様や公式コード例を確認するとき |
+| `microsoft-code-reference` | Microsoft API、Azure SDK、.NET ライブラリのメソッド、引数、バージョン互換性を確認するとき |
