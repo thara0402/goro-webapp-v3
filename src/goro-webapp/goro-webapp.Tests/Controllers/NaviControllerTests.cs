@@ -85,7 +85,7 @@ public sealed class NaviControllerTests
         };
 
         var repository = new Mock<IGourmetRepository>();
-        repository.Setup(x => x.GetNearestAsync(35.1, 139.2, 20)).ReturnsAsync(entities);
+        repository.Setup(x => x.GetNearestAsync(35.1, 139.2, 15)).ReturnsAsync(entities);
 
         var geocodeService = new Mock<IGeocodeServiceClient>();
         geocodeService.Setup(x => x.GeocodeAsync("shibuya")).ReturnsAsync((35.1, 139.2));
@@ -105,17 +105,17 @@ public sealed class NaviControllerTests
         Assert.AreEqual("a", gourmets[0].Id);
         Assert.AreEqual("b", gourmets[1].Id);
 
-        repository.Verify(x => x.GetNearestAsync(35.1, 139.2, 20), Times.Once);
+        repository.Verify(x => x.GetNearestAsync(35.1, 139.2, 15), Times.Once);
         mapper.Verify(x => x.Map<IEnumerable<goro_webapp.Models.Gourmet>>(entities), Times.Once);
     }
 
     /// <summary>
-    /// ジオコーディング成功時に近隣店舗の取得上限を 20 件で指定し、距離昇順を維持することを確認します。
+    /// ジオコーディング成功時に近隣店舗の取得上限を 15 件で指定し、距離昇順を維持することを確認します。
     /// </summary>
     [TestMethod]
-    public async Task Index_GeocodeSucceeds_RequestsNearestWithMaximum20()
+    public async Task Index_GeocodeSucceeds_RequestsNearestWithMaximum15()
     {
-        var candidates = Enumerable.Range(1, 21)
+        var candidates = Enumerable.Range(1, 16)
             .Select(index => new goro_webapp.Infrastructure.Entity.Gourmet
             {
                 Id = $"id-{index:D2}",
@@ -128,8 +128,8 @@ public sealed class NaviControllerTests
             .ToList();
 
         var repository = new Mock<IGourmetRepository>();
-        repository.Setup(x => x.GetNearestAsync(35.6, 139.7, 20))
-            .ReturnsAsync(candidates.Take(20).ToList());
+        repository.Setup(x => x.GetNearestAsync(35.6, 139.7, 15))
+            .ReturnsAsync(candidates.Take(15).ToList());
 
         var geocodeService = new Mock<IGeocodeServiceClient>();
         geocodeService.Setup(x => x.GeocodeAsync("tokyo station")).ReturnsAsync((35.6, 139.7));
@@ -154,17 +154,17 @@ public sealed class NaviControllerTests
         var model = Assert.IsInstanceOfType<NaviViewModel>(view.Model);
         var gourmets = model.Gourmets.ToList();
 
-        Assert.HasCount(20, gourmets);
+        Assert.HasCount(15, gourmets);
         Assert.AreEqual("id-01", gourmets[0].Id);
-        Assert.AreEqual("id-20", gourmets[19].Id);
-        repository.Verify(x => x.GetNearestAsync(35.6, 139.7, 20), Times.Once);
+        Assert.AreEqual("id-15", gourmets[14].Id);
+        repository.Verify(x => x.GetNearestAsync(35.6, 139.7, 15), Times.Once);
     }
 
     /// <summary>
-    /// 検索結果が 20 件未満の場合でも取得した全件を画面に反映することを確認します。
+    /// 検索結果が 15 件未満の場合でも取得した全件を画面に反映することを確認します。
     /// </summary>
     [TestMethod]
-    public async Task Index_GeocodeSucceeds_WhenLessThan20Results_ReturnsAllGourmets()
+    public async Task Index_GeocodeSucceeds_WhenLessThan15Results_ReturnsAllGourmets()
     {
         var entities = Enumerable.Range(1, 5)
             .Select(index => new goro_webapp.Infrastructure.Entity.Gourmet
@@ -190,7 +190,7 @@ public sealed class NaviControllerTests
             .ToList();
 
         var repository = new Mock<IGourmetRepository>();
-        repository.Setup(x => x.GetNearestAsync(35.0, 139.0, 20)).ReturnsAsync(entities);
+        repository.Setup(x => x.GetNearestAsync(35.0, 139.0, 15)).ReturnsAsync(entities);
 
         var geocodeService = new Mock<IGeocodeServiceClient>();
         geocodeService.Setup(x => x.GeocodeAsync("ueno")).ReturnsAsync((35.0, 139.0));
@@ -210,7 +210,7 @@ public sealed class NaviControllerTests
         Assert.AreEqual("id-1", gourmets[0].Id);
         Assert.AreEqual("id-2", gourmets[1].Id);
         Assert.AreEqual("id-5", gourmets[4].Id);
-        repository.Verify(x => x.GetNearestAsync(35.0, 139.0, 20), Times.Once);
+        repository.Verify(x => x.GetNearestAsync(35.0, 139.0, 15), Times.Once);
     }
 
     /// <summary>
@@ -223,7 +223,7 @@ public sealed class NaviControllerTests
         var mapped = new List<goro_webapp.Models.Gourmet>();
 
         var repository = new Mock<IGourmetRepository>();
-        repository.Setup(x => x.GetNearestAsync(34.7, 135.5, 20)).ReturnsAsync(entities);
+        repository.Setup(x => x.GetNearestAsync(34.7, 135.5, 15)).ReturnsAsync(entities);
 
         var geocodeService = new Mock<IGeocodeServiceClient>();
         geocodeService.Setup(x => x.GeocodeAsync("osaka")).ReturnsAsync((34.7, 135.5));
@@ -239,7 +239,7 @@ public sealed class NaviControllerTests
         var model = Assert.IsInstanceOfType<NaviViewModel>(view.Model);
         Assert.IsEmpty(model.Gourmets);
 
-        repository.Verify(x => x.GetNearestAsync(34.7, 135.5, 20), Times.Once);
+        repository.Verify(x => x.GetNearestAsync(34.7, 135.5, 15), Times.Once);
     }
 
 }
