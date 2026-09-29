@@ -85,7 +85,7 @@ public sealed class NaviControllerTests
         };
 
         var repository = new Mock<IGourmetRepository>();
-        repository.Setup(x => x.GetNearestAsync(35.1, 139.2, 10)).ReturnsAsync(entities);
+        repository.Setup(x => x.GetNearestAsync(35.1, 139.2, 15)).ReturnsAsync(entities);
 
         var geocodeService = new Mock<IGeocodeServiceClient>();
         geocodeService.Setup(x => x.GeocodeAsync("shibuya")).ReturnsAsync((35.1, 139.2));
@@ -105,8 +105,108 @@ public sealed class NaviControllerTests
         Assert.AreEqual("a", gourmets[0].Id);
         Assert.AreEqual("b", gourmets[1].Id);
 
-        repository.Verify(x => x.GetNearestAsync(35.1, 139.2, 10), Times.Once);
+        repository.Verify(x => x.GetNearestAsync(35.1, 139.2, 15), Times.Once);
         mapper.Verify(x => x.Map<IEnumerable<goro_webapp.Models.Gourmet>>(entities), Times.Once);
+    }
+
+    /// <summary>
+    /// ジオコーディング成功時に近隣店舗の取得上限を 15 件で指定することを確認します。
+    /// </summary>
+    [TestMethod]
+    public async Task Index_GeocodeSucceeds_RequestsNearestWithMaximum15()
+    {
+        var entities = Enumerable.Range(1, 15)
+            .Select(index => new goro_webapp.Infrastructure.Entity.Gourmet
+            {
+                Id = $"id-{index:D2}",
+                Season = 1,
+                Episode = index,
+                RestaurantNumber = index,
+                Title = $"T{index}",
+                Restaurant = $"R{index}",
+            })
+            .ToList();
+
+        var mapped = entities
+            .Select(x => new goro_webapp.Models.Gourmet
+            {
+                Id = x.Id,
+                Season = x.Season,
+                Episode = x.Episode,
+                Title = x.Title,
+                Restaurant = x.Restaurant,
+            })
+            .ToList();
+
+        var repository = new Mock<IGourmetRepository>();
+        repository.Setup(x => x.GetNearestAsync(35.6, 139.7, 15)).ReturnsAsync(entities);
+
+        var geocodeService = new Mock<IGeocodeServiceClient>();
+        geocodeService.Setup(x => x.GeocodeAsync("tokyo station")).ReturnsAsync((35.6, 139.7));
+
+        var mapper = new Mock<AutoMapper.IMapper>();
+        mapper.Setup(x => x.Map<IEnumerable<goro_webapp.Models.Gourmet>>(entities)).Returns(mapped);
+
+        var sut = new NaviController(repository.Object, geocodeService.Object, mapper.Object);
+
+        var result = await sut.Index("tokyo station");
+
+        var view = Assert.IsInstanceOfType<ViewResult>(result);
+        var model = Assert.IsInstanceOfType<NaviViewModel>(view.Model);
+        var gourmets = model.Gourmets.ToList();
+
+        Assert.HasCount(15, gourmets);
+        Assert.AreEqual("id-01", gourmets[0].Id);
+        Assert.AreEqual("id-15", gourmets[14].Id);
+        repository.Verify(x => x.GetNearestAsync(35.6, 139.7, 15), Times.Once);
+    }
+
+    /// <summary>
+    /// 検索結果が 15 件未満の場合でも取得した全件を画面に反映することを確認します。
+    /// </summary>
+    [TestMethod]
+    public async Task Index_GeocodeSucceeds_WhenLessThan15Results_ReturnsAllGourmets()
+    {
+        var entities = new List<goro_webapp.Infrastructure.Entity.Gourmet>
+        {
+            new() { Id = "id-1", Season = 1, Episode = 1, RestaurantNumber = 1, Title = "T1", Restaurant = "R1" },
+            new() { Id = "id-2", Season = 1, Episode = 2, RestaurantNumber = 2, Title = "T2", Restaurant = "R2" },
+            new() { Id = "id-3", Season = 1, Episode = 3, RestaurantNumber = 3, Title = "T3", Restaurant = "R3" },
+        };
+
+        var mapped = entities
+            .Select(x => new goro_webapp.Models.Gourmet
+            {
+                Id = x.Id,
+                Season = x.Season,
+                Episode = x.Episode,
+                Title = x.Title,
+                Restaurant = x.Restaurant,
+            })
+            .ToList();
+
+        var repository = new Mock<IGourmetRepository>();
+        repository.Setup(x => x.GetNearestAsync(35.0, 139.0, 15)).ReturnsAsync(entities);
+
+        var geocodeService = new Mock<IGeocodeServiceClient>();
+        geocodeService.Setup(x => x.GeocodeAsync("ueno")).ReturnsAsync((35.0, 139.0));
+
+        var mapper = new Mock<AutoMapper.IMapper>();
+        mapper.Setup(x => x.Map<IEnumerable<goro_webapp.Models.Gourmet>>(entities)).Returns(mapped);
+
+        var sut = new NaviController(repository.Object, geocodeService.Object, mapper.Object);
+
+        var result = await sut.Index("ueno");
+
+        var view = Assert.IsInstanceOfType<ViewResult>(result);
+        var model = Assert.IsInstanceOfType<NaviViewModel>(view.Model);
+        var gourmets = model.Gourmets.ToList();
+
+        Assert.HasCount(3, gourmets);
+        Assert.AreEqual("id-1", gourmets[0].Id);
+        Assert.AreEqual("id-2", gourmets[1].Id);
+        Assert.AreEqual("id-3", gourmets[2].Id);
+        repository.Verify(x => x.GetNearestAsync(35.0, 139.0, 15), Times.Once);
     }
 
 }
