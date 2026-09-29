@@ -94,7 +94,7 @@ Planning ツールでは、少なくとも次の項目を確認してくださ�
 
 | 環境 | 開始方法 | 計画の確定 | 完了時 |
 | --- | --- | --- | --- |
-| ローカル実行（GitHub Copilot App / VS Code） | チャットで依頼 | Planning ツールで確定する | チャットで報告する |
+| ローカル実行（GitHub Copilot App / VS Code） | チャットで依頼 | Planning ツールで確定する | チャットで報告する。PR 作成依頼時の引き継ぎは `design/workflow.md` の「完了報告」に従う。 |
 | GitHub Copilot Cloud Agent | Issue の割り当て | 計画を Pull Request 本文に記載する | 作業用ブランチと Pull Request を作成し、本文は `.github/pull_request_template.md` に従って変更内容、設計変更の有無、テスト結果、未確認事項を記載する。最終的な review / merge は人間が行う |
 
 ## カスタムエージェント
@@ -108,6 +108,7 @@ Issue とチャットのどちらを起点にする場合でも、アプリケ�
 
 - カスタムエージェントを選択していない状態でアプリケーションの変更を依頼された場合は、自分で実装せず、`orchestrator` を選択し直すようユーザーに案内してください。
 - 担当エージェントとして呼び出された場合は、`orchestrator` からの依頼内容と自分のエージェント定義に従ってください。
+- ローカルの `orchestrator` は読み取り専用です。PR 作成依頼時は `design/workflow.md` の「完了報告」に従い、Default Agent への引き継ぎを案内してください。Cloud Agent の PR 作成は従来どおりです。
 - `design/workflow.md` は、ユーザーが明示的に指示した場合を除き、エージェントが編集しないでください。
 
 ## テスト
