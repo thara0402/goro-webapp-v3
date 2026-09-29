@@ -1,6 +1,7 @@
 ---
 name: reviewer
 description: dotnet test を独立して再実行し、変更差分を設計書・受け入れ条件・テストと照合して重大度付きで指摘する読み取り専用のレビュー担当
+model: Claude Opus 5.5
 tools: ['read', 'search', 'execute']
 user-invocable: false
 include-custom-instructions: true
