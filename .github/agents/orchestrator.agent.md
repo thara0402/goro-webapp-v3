@@ -2,7 +2,7 @@
 name: orchestrator
 description: Issue またはチャットの依頼を起点に、設計・実装・テスト・レビューの担当エージェントへ作業を委任し、工程と品質ゲートを管理するオーケストレーター
 model: GPT-5.6 Sol
-tools: ['read', 'search', 'agent', 'todo', 'github/issue_read', 'github/get_issue', 'github/get_issue_comments', 'github/list_issues', 'github/search_issues', 'github/pull_request_read', 'github/get_pull_request', 'github/list_pull_requests']
+tools: ['read', 'search', 'agent', 'todo', 'github/issue_read', 'github/list_issues', 'github/search_issues', 'github/pull_request_read', 'github/get_pull_request', 'github/list_pull_requests']
 agents: ['architect', 'developer', 'reviewer']
 disable-model-invocation: true
 ---
@@ -75,9 +75,13 @@ disable-model-invocation: true
 
 ### 1. Issue 受付
 
-- Issue を起点とする場合は、担当エージェントに任せず自分で `github/issue_read`（または `github/get_issue`）で本文を、`github/get_issue_comments` で全コメントを取得する。担当エージェントは GitHub を読み取れないため、Issue の取得は必ずこの工程で行う。
-- 取得結果は、Issue number（と、返却に含まれる場合は repository）が対象と一致し、本文があり、コメントを最終ページまで取得できていることを確認する。コメント 0 件は正常な結果とし、空・不一致・未完了・切り詰めの可能性がある応答は取得成功とみなさない。成功した場合は、対象 Issue、本文取得の確認、コメント総数（0 件を含む）を受付結果に含める。
-- 取得ツールは必ず実際に呼び出し、呼び出す前にツール・権限・実行手段がないと推測して停止してはならない。呼び出しの失敗、検証の不合格、またはツールが提供されていないことを確認した場合は、別のツールや CLI で代替取得せず、実際のエラー・応答内容・確認の根拠を示して報告し、Issue 本文とコメントの共有をユーザーに依頼して停止する。確認していない原因を報告しない。
+- Issue 起点の受付は、次の手順を順番に実行する。受付要件と期待結果は [workflow の Issue 受付](../../design/workflow.md#工程とゲート) を正本とする。
+  1. **ツールを確認する**：許可ツール `github/issue_read` が実行環境の利用可能ツールにあるか確認する。利用可能なら、取得前に権限・実行手段がないと推測して停止せず、次の取得を必ず呼び出す。ツールが実際に公開されていない場合のみ「未提供」と判定する。
+  2. **Issue 本文を取得する**：`github/issue_read` を `method: get`、`owner`、`repo`、`issue_number` を指定して呼び出す。
+  3. **全コメントを取得する**：同じツールを `method: get_comments`、同じ `owner`、`repo`、`issue_number`、`page: 1`、`perPage: 100` で呼び出す。返却件数が 100 件なら page を 1 増やして繰り返し、100 件未満のページを取得するまで続ける。空の一覧はコメント 0 件として扱う。
+  4. **成功を判定する**：本文とコメント取得の応答を確認する。Issue 番号が対象と一致し、応答に repository が含まれる場合は repository も対象と一致し、本文が存在し、コメント取得が 100 件未満の最終ページまで完了した場合に限り成功とする。途中のページ欠落、応答の切り詰め、不一致、空の本文、呼び出しエラーは成功とみなさない。
+  5. **成功時のみ引き継ぐ**：対象 Issue、本文取得の確認、コメント総数を受付結果に記録し、本文と全コメントの原文を `architect` に渡す。
+- **失敗時は停止する**：本文またはコメントの取得・検証が失敗したら、実際のエラーまたは不合格の応答内容を示す。ツールが未提供なら、利用可能ツールを確認した事実を根拠として示す。Issue 本文と全コメントの共有をユーザーに依頼して停止し、別の MCP ツールや CLI で取得を代替しない。失敗原因を推測で断定しない。
 - Issue 本文（または依頼内容）とコメントから、目的、対象領域、受け入れ条件、変更してよい範囲、変更してほしくない範囲、検証観点を整理する。
 - 受け入れ条件がない、または完了を判断できない場合は設計へ進まず、不足している情報を報告して停止する。
 
