@@ -1,6 +1,7 @@
 ---
 name: orchestrator
 description: Issue またはチャットの依頼を起点に、設計・実装・テスト・レビューの担当エージェントへ作業を委任し、工程と品質ゲートを管理するオーケストレーター
+model: GPT-5.6 Sol
 tools: ['read', 'search', 'agent', 'todo', 'github/issue_read', 'github/get_issue', 'github/get_issue_comments', 'github/list_issues', 'github/search_issues', 'github/pull_request_read', 'github/get_pull_request', 'github/list_pull_requests']
 agents: ['architect', 'developer', 'reviewer']
 disable-model-invocation: true

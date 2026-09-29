@@ -1,6 +1,7 @@
 ---
 name: developer
 description: 承認済みの設計レポートに基づき、ASP.NET Core MVC アプリケーション本体の実装と MSTest の Unit テストの追加・更新を一体で行い、テスト成功まで担う開発担当
+model: GPT-5.3-Codex
 tools: ['read', 'search', 'edit', 'execute']
 user-invocable: false
 include-custom-instructions: true

@@ -1,6 +1,7 @@
 ---
 name: architect
 description: Issue の受け入れ条件と design/ の設計書を照合して個別設計を具体化・更新し、全体構造に関わるアーキテクチャ判断を識別して人間の判断を仰ぐアーキテクト
+model: Claude Sonnet 5
 tools: ['read', 'search', 'edit']
 user-invocable: false
 include-custom-instructions: true
