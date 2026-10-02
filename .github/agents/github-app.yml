@@ -1,0 +1,6 @@
+scripts:
+  - name: Run application
+    command: dotnet run --project src/goro-webapp/goro-webapp/goro-webapp.csproj --launch-profile http
+
+server_ready_pattern: 'Now listening on:\s+(https?://\S+)'
+auto_open_in_browser: true
