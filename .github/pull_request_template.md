@@ -17,9 +17,17 @@ dotnet test src/goro-webapp/goro-webapp.slnx --no-restore
 
 ```
 
+## TDD サイクル記録
+
+<!-- 振る舞いの変更ごとに Red（対象テストの失敗理由）→ Green（同じテストの成功）を記録する。Refactor した場合は再実行結果も記載する。対象外の場合は理由を記載する -->
+
+| 受け入れ条件 | テストクラス・メソッド | Red（実行コマンド・失敗理由） | Green（実行コマンド・結果） | Refactor（実施内容・再実行結果） |
+| --- | --- | --- | --- | --- |
+| | | | | |
+
 ## レビュー結果
 
-<!-- reviewer の指摘（blocking：N 件、warning 以下の残った指摘）。orchestrator を使わない例外の変更のみの PR は「対象外」 -->
+<!-- reviewer の指摘（blocking：N 件、warning 以下の残った指摘）と TDD 確認結果。orchestrator を使わない例外の変更のみの PR は「対象外」 -->
 
 ## 工程実行記録
 

@@ -119,6 +119,7 @@ Issue とチャットのどちらを起点にする場合でも、アプリケ�
 dotnet test src/goro-webapp/goro-webapp.slnx --no-restore
 ```
 
+- 振る舞いを追加・変更する実装では、`design/workflow.md` の TDD 方針に従って受け入れ条件ごとにテスト先行の Red → Green → Refactor サイクルを実施し、結果を記録してください。
 - テストが失敗した場合、または合計が 0 件の場合は完了扱いにしない。0 件の場合は依存関係が未復元の可能性があるため、`dotnet restore src/goro-webapp/goro-webapp.slnx` を実行してから再実行する。
 - テストを実行できない場合は完了扱いにせず、理由と代替確認内容を完了報告および Pull Request 本文に明記する。
 
