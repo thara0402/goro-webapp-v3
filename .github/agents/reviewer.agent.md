@@ -35,7 +35,7 @@ include-custom-instructions: true
 
 1. 受け入れ条件、設計レポート、開発報告と参照ドキュメントを確認し、必要な参照スキルを読む。
 2. `git --no-pager status` と `git --no-pager diff` で、未コミットの変更を含む差分を確認する。
-3. `dotnet test src/goro-webapp/goro-webapp.slnx --no-restore` を自ら実行し、開発報告のテスト結果と一致するか確認する。テストの合計が 0 件の場合は、テストが実行されていないため `blocking` とする。
+3. `dotnet test src/goro-webapp/goro-webapp.slnx --no-restore` を自ら実行し、開発報告のテスト結果と一致するか確認する。テストの合計が 0 件の場合は、テストが実行されていないため `blocking` とする。restore やその他の状態変更コマンドは実行せず、原因調査と復旧を developer に差し戻すよう orchestrator に報告する。developer の復旧後は同じテストコマンドを独立して再実行し、失敗 0 件かつ合計 1 件以上を確認するまで合格にしない。
 4. 次の観点でレビューする。
    - 受け入れ条件をすべて満たしているか。
    - 受け入れ条件ごとに、それを検証するテストが実在するか。開発報告の対応表を鵜呑みにせず、テストコードを読んで確認する。
@@ -50,7 +50,7 @@ include-custom-instructions: true
 ## 制約
 
 - ファイルを編集しない。
-- 実行してよいコマンドは `dotnet test` と、`git --no-pager status`、`git --no-pager diff`、`git --no-pager log` などの参照系のみ。ファイルやリポジトリの状態を変更するコマンドは実行しない。
+- 実行してよいコマンドは `dotnet test` と、`git --no-pager status`、`git --no-pager diff`、`git --no-pager log` などの参照系のみ。ファイルやリポジトリの状態を変更するコマンドは実行しない。テスト合計 0 件から依存関係未復元と決めつけず、restore は developer の原因調査・復旧に委ねる。
 - 書式や好みの問題は指摘しない。根拠のある問題だけを指摘する。
 
 ## 報告形式
