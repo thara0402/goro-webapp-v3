@@ -16,10 +16,8 @@
 
 ## カスタムエージェントと作業工程
 
-- `src/goro-webapp/` または `design/`（`design/workflow.md` を除く）を変更する場合は、`.github/agents/` の `orchestrator` を使用してください。選択されていない場合は、自分でアプリケーションを変更せず、`orchestrator` を選択するよう案内してください。
-- `README.md`、`.github/`、`design/workflow.md` の変更は例外として既定のエージェントで行えます。どの工程を実行するか、担当者の権限、承認ゲート、完了報告の詳細は [`design/workflow.md`](../design/workflow.md) を正本とします。
-- 担当エージェントとして呼び出された場合は、`orchestrator` からの依頼と自分のエージェント定義に従ってください。各エージェントの役割・編集範囲・参照スキルは `.github/agents/` の定義を確認してください。
-- ローカルの `orchestrator` は読み取り専用です。PR 作成依頼時は `design/workflow.md` の完了報告手順に従ってください。Cloud Agent の PR 作成は同文書の手順に従います。
+- 変更対象に応じたエージェントの選択、担当者の権限、承認ゲート、工程、完了報告は [`design/workflow.md`](../design/workflow.md) を正本とします。ファイル範囲ごとの適用ルールと例外も同文書を参照してください。
+- 担当エージェントとして呼び出された場合は、`orchestrator` からの依頼と自分のエージェント定義に従ってください。各担当の編集範囲・参照スキルは `.github/agents/` の定義を確認してください。
 - `design/workflow.md` は、ユーザーが明示的に指示した場合を除き、エージェントが編集しないでください。
 
 ## Secret 方針
@@ -30,14 +28,7 @@
 
 ## テストと品質ゲート
 
-- 品質ゲートの詳細は [`design/workflow.md`](../design/workflow.md) を正本とします。コード、設定、設計書、テストを変更した場合は、完了報告または Pull Request 作成前に次のテストを実行してください。
-
-  ```bash
-  dotnet test src/goro-webapp/goro-webapp.slnx --no-restore
-  ```
-
-- 振る舞いを追加・変更する場合は、受け入れ条件ごとにテスト先行の Red → Green → Refactor を実施し、実行結果を記録してください。テストを追加・更新しない場合は、その理由を記録してください。
-- テスト失敗時は原因を修正してください。テスト合計 0 件は成功とみなしません。実装・テスト担当は原因を調査し、依存関係の未復元が原因と確認できた場合に限り `dotnet restore src/goro-webapp/goro-webapp.slnx` を実行してから再実行してください。原因を特定できない、または復旧できない場合は停止して報告してください。読み取り専用の reviewer は restore を実行せず、0 件を blocking として orchestrator に差し戻しを報告します。復旧後も reviewer が独立して再実行し、失敗 0 件かつ合計 1 件以上を確認するまで品質ゲートを合格にしません。テストを実行できない場合は完了扱いにせず、理由と代替確認内容を報告してください。
+- テストコマンド、TDD、失敗時の対応、0 件の扱いを含む品質ゲートは [`design/workflow.md`](../design/workflow.md) に従ってください。対象テストを実行できない場合は完了扱いにせず、理由と代替確認内容を報告してください。
 
 ## スキル
 
