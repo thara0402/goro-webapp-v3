@@ -13,7 +13,7 @@ if (!builder.Environment.IsDevelopment())
     builder.Configuration.AddAzureKeyVault(new Uri(builder.Configuration["KeyVaultUrl"] ?? ""), new DefaultAzureCredential());
 }
 builder.Services.AddControllersWithViews();
-builder.Services.Configure<MySettings>(builder.Configuration.GetSection("WebApp"));
+builder.Services.AddOptions<MySettings>().Bind(builder.Configuration.GetSection("WebApp"));
 builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = builder.Configuration["WebApp:AppInsightsConnectionString"] });
 builder.Services.AddSingleton(new CosmosClientBuilder(builder.Configuration["WebApp:CosmosConnection"])
     .WithConnectionModeDirect()

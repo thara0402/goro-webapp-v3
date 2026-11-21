@@ -1,0 +1,514 @@
+{
+  "settings": {
+    "components": {
+      "code": true,
+      "binaries": false
+    },
+    "targetId": "net11.0",
+    "targetDisplayName": ".NETCoreApp,Version=v11.0"
+  },
+  "analysisStartTime": "2026-11-21T10:30:14.1759613Z",
+  "analysisEndTime": "2026-11-21T10:30:17.4974572Z",
+  "privacyModeHelpUrl": "https://go.microsoft.com/fwlink/?linkid=2270980",
+  "stats": {
+    "summary": {
+      "projects": 2,
+      "issues": 5,
+      "incidents": 13,
+      "effort": 13
+    },
+    "charts": {
+      "severity": {
+        "Mandatory": 3,
+        "Optional": 3,
+        "Potential": 7,
+        "Information": 0
+      },
+      "category": {
+        "NuGet": 3,
+        "Project": 2,
+        "Api": 8
+      }
+    }
+  },
+  "projects": [
+    {
+      "path": "goro-webapp\\goro-webapp.csproj",
+      "startingProject": true,
+      "issues": 4,
+      "storyPoints": 9,
+      "properties": {
+        "appName": "goro-webapp",
+        "projectKind": "AspNetCore",
+        "frameworks": [
+          "net10.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "isTestProject": false,
+        "numberOfFiles": 30,
+        "numberOfCodeFiles": 25,
+        "linesTotal": 1393,
+        "linesOfCode": 1047,
+        "totalApiScanned": 435,
+        "minLinesOfCodeToChange": 7,
+        "maxLinesOfCodeToChange": 7
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "97bdb5d2-a6e6-463f-8e28-f9bb2ee71920",
+          "ruleId": "NuGet.0004",
+          "projectPath": "goro-webapp\\goro-webapp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "AutoMapper, 16.2.0\n\n\u30EC\u30B3\u30E1\u30F3\u30C7\u30FC\u30B7\u30E7\u30F3\uFF1A\n\nAutoMapper, 17.0.0",
+              "protected": "AutoMapper, 16.2.0\n\n\u30EC\u30B3\u30E1\u30F3\u30C7\u30FC\u30B7\u30E7\u30F3\uFF1A\n\nAutoMapper, 17.0.0"
+            },
+            "kind": "File",
+            "path": "goro-webapp\\goro-webapp.csproj",
+            "snippet": "AutoMapper, 16.2.0\n\n\u30EC\u30B3\u30E1\u30F3\u30C7\u30FC\u30B7\u30E7\u30F3\uFF1A\n\nAutoMapper, 17.0.0",
+            "protectedSnippet": "AutoMapper, 16.2.0\n\n\u30EC\u30B3\u30E1\u30F3\u30C7\u30FC\u30B7\u30E7\u30F3\uFF1A\n\nAutoMapper, 17.0.0",
+            "label": "AutoMapper 16.2.0",
+            "properties": {
+              "PackageId": "AutoMapper",
+              "PackageVersion": "16.2.0",
+              "PackageNewVersion": "17.0.0",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "aff3348c-2f82-4631-8b8c-6f3e116ae354",
+          "ruleId": "Project.0002",
+          "projectPath": "goro-webapp\\goro-webapp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "\u73FE\u5728\u306E\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF: net10.0\n\u63A8\u5968\u3055\u308C\u308B\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF: net11.0",
+              "protected": "\u73FE\u5728\u306E\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF: net10.0\n\u63A8\u5968\u3055\u308C\u308B\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF: net11.0"
+            },
+            "kind": "File",
+            "path": "goro-webapp\\goro-webapp.csproj",
+            "snippet": "\u73FE\u5728\u306E\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF: net10.0\n\u63A8\u5968\u3055\u308C\u308B\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF: net11.0",
+            "protectedSnippet": "\u73FE\u5728\u306E\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF: net10.0\n\u63A8\u5968\u3055\u308C\u308B\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF: net11.0",
+            "properties": {
+              "CurrentTargetFramework": "net10.0",
+              "RecommendedTargetFramework": "net11.0"
+            }
+          }
+        },
+        {
+          "incidentId": "4111573c-8169-42ae-b513-8d0a5c9994e8",
+          "ruleId": "Api.0003",
+          "description": "Nullable JsonDocument properties deserialize to JsonValueKind.Null ",
+          "projectPath": "goro-webapp\\goro-webapp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "using var doc = JsonDocument.Parse(json);",
+              "protected": "T:System.Text.Json.JsonDocument"
+            },
+            "kind": "File",
+            "path": "goro-webapp\\Infrastructure\\GeocodeServiceClient.cs",
+            "snippet": "using var doc = JsonDocument.Parse(json);",
+            "protectedSnippet": "T:System.Text.Json.JsonDocument",
+            "label": "T:System.Text.Json.JsonDocument",
+            "properties": {
+              "CharCount": "2594"
+            },
+            "links": [
+              {
+                "title": "API \u30C9\u30AD\u30E5\u30E1\u30F3\u30C8",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/serialization/9.0/jsondocument-props.md",
+                "isCustom": false
+              }
+            ],
+            "line": 47,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "14766fa9-fd2e-488e-a3e6-4e312c75a971",
+          "ruleId": "Api.0003",
+          "description": "Breaking change - Streaming HTTP responses enabled by default in browser HTTP clients ",
+          "projectPath": "goro-webapp\\goro-webapp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var json = await response.Content.ReadAsStringAsync();",
+              "protected": "T:System.Net.Http.HttpContent"
+            },
+            "kind": "File",
+            "path": "goro-webapp\\Infrastructure\\GeocodeServiceClient.cs",
+            "snippet": "var json = await response.Content.ReadAsStringAsync();",
+            "protectedSnippet": "T:System.Net.Http.HttpContent",
+            "label": "T:System.Net.Http.HttpContent",
+            "properties": {
+              "CharCount": "2594"
+            },
+            "links": [
+              {
+                "title": "API \u30C9\u30AD\u30E5\u30E1\u30F3\u30C8",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/default-http-streaming.md",
+                "isCustom": false
+              }
+            ],
+            "line": 46,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "29cc2f60-6a9c-40ca-8fd4-78fcba63dc3a",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "goro-webapp\\goro-webapp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var url = $\u0022https://maps.googleapis.com/maps/api/geocode/json?address={Uri.EscapeDataString(address)}\u0026key={_apiKey}\u0022;",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "goro-webapp\\Infrastructure\\GeocodeServiceClient.cs",
+            "snippet": "var url = $\u0022https://maps.googleapis.com/maps/api/geocode/json?address={Uri.EscapeDataString(address)}\u0026key={_apiKey}\u0022;",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "properties": {
+              "CharCount": "2594"
+            },
+            "links": [
+              {
+                "title": "API \u30C9\u30AD\u30E5\u30E1\u30F3\u30C8",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 40,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "f2f247fe-16dd-466a-98b0-03b94c1e480a",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: Exception diagnostics are suppressed when IExceptionHandler.TryHandleAsync returns true ",
+          "projectPath": "goro-webapp\\goro-webapp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "app.UseExceptionHandler(\u0022/Home/Error\u0022);",
+              "protected": "M:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)"
+            },
+            "kind": "File",
+            "path": "goro-webapp\\Program.cs",
+            "snippet": "app.UseExceptionHandler(\u0022/Home/Error\u0022);",
+            "protectedSnippet": "M:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)",
+            "label": "M:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)",
+            "properties": {
+              "CharCount": "1622"
+            },
+            "links": [
+              {
+                "title": "API \u30C9\u30AD\u30E5\u30E1\u30F3\u30C8",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/aspnet-core/10/exception-handler-diagnostics-suppressed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 30,
+            "column": 4
+          }
+        },
+        {
+          "incidentId": "fb0ed384-741c-43e0-8a74-5b7a4d6c6725",
+          "ruleId": "Api.0001",
+          "description": "Breaking change: DynamicallyAccessedMembers annotation removed from trim-unsafe configuration APIs ",
+          "projectPath": "goro-webapp\\goro-webapp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.Configure\u003CMySettings\u003E(builder.Configuration.GetSection(\u0022WebApp\u0022));",
+              "protected": "M:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure\u0060\u00601(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)"
+            },
+            "kind": "File",
+            "path": "goro-webapp\\Program.cs",
+            "snippet": "builder.Services.Configure\u003CMySettings\u003E(builder.Configuration.GetSection(\u0022WebApp\u0022));",
+            "protectedSnippet": "M:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure\u0060\u00601(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)",
+            "label": "M:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure\u0060\u00601(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)",
+            "properties": {
+              "CharCount": "1622"
+            },
+            "links": [
+              {
+                "title": "API \u30C9\u30AD\u30E5\u30E1\u30F3\u30C8",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/extensions/10.0/dynamically-accessed-members-configuration.md",
+                "isCustom": false
+              }
+            ],
+            "line": 15,
+            "column": 0
+          }
+        },
+        {
+          "incidentId": "3f890b95-cd28-4e06-a0e3-3914470efc19",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "goro-webapp\\goro-webapp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Configuration.AddAzureKeyVault(new Uri(builder.Configuration[\u0022KeyVaultUrl\u0022] ?? \u0022\u0022), new DefaultAzureCredential());",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "goro-webapp\\Program.cs",
+            "snippet": "builder.Configuration.AddAzureKeyVault(new Uri(builder.Configuration[\u0022KeyVaultUrl\u0022] ?? \u0022\u0022), new DefaultAzureCredential());",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "properties": {
+              "CharCount": "1622"
+            },
+            "links": [
+              {
+                "title": "API \u30C9\u30AD\u30E5\u30E1\u30F3\u30C8",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 12,
+            "column": 4
+          }
+        },
+        {
+          "incidentId": "18beb294-a63d-4e04-a9d9-c67ae1d18207",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "goro-webapp\\goro-webapp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Configuration.AddAzureKeyVault(new Uri(builder.Configuration[\u0022KeyVaultUrl\u0022] ?? \u0022\u0022), new DefaultAzureCredential());",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "goro-webapp\\Program.cs",
+            "snippet": "builder.Configuration.AddAzureKeyVault(new Uri(builder.Configuration[\u0022KeyVaultUrl\u0022] ?? \u0022\u0022), new DefaultAzureCredential());",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "properties": {
+              "CharCount": "1622"
+            },
+            "links": [
+              {
+                "title": "API \u30C9\u30AD\u30E5\u30E1\u30F3\u30C8",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 12,
+            "column": 4
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "goro-webapp.Tests\\goro-webapp.Tests.csproj",
+      "startingProject": true,
+      "issues": 3,
+      "storyPoints": 4,
+      "properties": {
+        "appName": "goro-webapp.Tests",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net10.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "isTestProject": false,
+        "numberOfFiles": 5,
+        "numberOfCodeFiles": 5,
+        "linesTotal": 602,
+        "linesOfCode": 602,
+        "totalApiScanned": 244,
+        "minLinesOfCodeToChange": 1,
+        "maxLinesOfCodeToChange": 1
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "f48b1e11-1d89-4df7-a52d-b758c8103887",
+          "ruleId": "NuGet.0005",
+          "projectPath": "goro-webapp.Tests\\goro-webapp.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "MSTest.TestFramework, 4.0.2\n\n\u30EC\u30B3\u30E1\u30F3\u30C7\u30FC\u30B7\u30E7\u30F3\uFF1A\n\n\u7F6E\u304D\u63DB\u3048\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\u3002\nRemove MSTest.TestFramework, and replace with new package MSTest.TestFramework, 4.5.3",
+              "protected": "MSTest.TestFramework, 4.0.2\n\n\u30EC\u30B3\u30E1\u30F3\u30C7\u30FC\u30B7\u30E7\u30F3\uFF1A\n\n\u7F6E\u304D\u63DB\u3048\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\u3002\nRemove MSTest.TestFramework, and replace with new package MSTest.TestFramework, 4.5.3"
+            },
+            "kind": "File",
+            "path": "goro-webapp.Tests\\goro-webapp.Tests.csproj",
+            "snippet": "MSTest.TestFramework, 4.0.2\n\n\u30EC\u30B3\u30E1\u30F3\u30C7\u30FC\u30B7\u30E7\u30F3\uFF1A\n\n\u7F6E\u304D\u63DB\u3048\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\u3002\nRemove MSTest.TestFramework, and replace with new package MSTest.TestFramework, 4.5.3",
+            "protectedSnippet": "MSTest.TestFramework, 4.0.2\n\n\u30EC\u30B3\u30E1\u30F3\u30C7\u30FC\u30B7\u30E7\u30F3\uFF1A\n\n\u7F6E\u304D\u63DB\u3048\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\u3002\nRemove MSTest.TestFramework, and replace with new package MSTest.TestFramework, 4.5.3",
+            "label": "MSTest.TestFramework 4.0.2",
+            "properties": {
+              "PackageId": "MSTest.TestFramework",
+              "PackageVersion": "4.0.2",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "09510d26-f1c3-413f-9b66-5ef16e456c1a",
+          "ruleId": "NuGet.0005",
+          "projectPath": "goro-webapp.Tests\\goro-webapp.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "MSTest.TestAdapter, 4.0.2\n\n\u30EC\u30B3\u30E1\u30F3\u30C7\u30FC\u30B7\u30E7\u30F3\uFF1A\n\n\u7F6E\u304D\u63DB\u3048\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\u3002\nRemove MSTest.TestAdapter, and replace with new package MSTest.TestAdapter, 4.5.3",
+              "protected": "MSTest.TestAdapter, 4.0.2\n\n\u30EC\u30B3\u30E1\u30F3\u30C7\u30FC\u30B7\u30E7\u30F3\uFF1A\n\n\u7F6E\u304D\u63DB\u3048\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\u3002\nRemove MSTest.TestAdapter, and replace with new package MSTest.TestAdapter, 4.5.3"
+            },
+            "kind": "File",
+            "path": "goro-webapp.Tests\\goro-webapp.Tests.csproj",
+            "snippet": "MSTest.TestAdapter, 4.0.2\n\n\u30EC\u30B3\u30E1\u30F3\u30C7\u30FC\u30B7\u30E7\u30F3\uFF1A\n\n\u7F6E\u304D\u63DB\u3048\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\u3002\nRemove MSTest.TestAdapter, and replace with new package MSTest.TestAdapter, 4.5.3",
+            "protectedSnippet": "MSTest.TestAdapter, 4.0.2\n\n\u30EC\u30B3\u30E1\u30F3\u30C7\u30FC\u30B7\u30E7\u30F3\uFF1A\n\n\u7F6E\u304D\u63DB\u3048\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\u3002\nRemove MSTest.TestAdapter, and replace with new package MSTest.TestAdapter, 4.5.3",
+            "label": "MSTest.TestAdapter 4.0.2",
+            "properties": {
+              "PackageId": "MSTest.TestAdapter",
+              "PackageVersion": "4.0.2",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "d812e610-e7c2-45d7-9b2a-a38092c48518",
+          "ruleId": "Project.0002",
+          "projectPath": "goro-webapp.Tests\\goro-webapp.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "\u73FE\u5728\u306E\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF: net10.0\n\u63A8\u5968\u3055\u308C\u308B\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF: net11.0",
+              "protected": "\u73FE\u5728\u306E\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF: net10.0\n\u63A8\u5968\u3055\u308C\u308B\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF: net11.0"
+            },
+            "kind": "File",
+            "path": "goro-webapp.Tests\\goro-webapp.Tests.csproj",
+            "snippet": "\u73FE\u5728\u306E\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF: net10.0\n\u63A8\u5968\u3055\u308C\u308B\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF: net11.0",
+            "protectedSnippet": "\u73FE\u5728\u306E\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF: net10.0\n\u63A8\u5968\u3055\u308C\u308B\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF: net11.0",
+            "properties": {
+              "CurrentTargetFramework": "net10.0",
+              "RecommendedTargetFramework": "net11.0"
+            }
+          }
+        },
+        {
+          "incidentId": "8cad4e62-5323-4bbf-baf4-7146ec1c4568",
+          "ruleId": "Api.0003",
+          "description": "Breaking change - Streaming HTTP responses enabled by default in browser HTTP clients ",
+          "projectPath": "goro-webapp.Tests\\goro-webapp.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var handler = new StubHttpMessageHandler(new HttpResponseMessage(statusCode)\r\n        {\r\n            Content = new StringContent(content, Encoding.UTF8, \u0022application/json\u0022)\r\n        });",
+              "protected": "T:System.Net.Http.HttpContent"
+            },
+            "kind": "File",
+            "path": "goro-webapp.Tests\\Infrastructure\\GeocodeServiceClientTests.cs",
+            "snippet": "var handler = new StubHttpMessageHandler(new HttpResponseMessage(statusCode)\r\n        {\r\n            Content = new StringContent(content, Encoding.UTF8, \u0022application/json\u0022)\r\n        });",
+            "protectedSnippet": "T:System.Net.Http.HttpContent",
+            "label": "T:System.Net.Http.HttpContent",
+            "properties": {
+              "CharCount": "3781"
+            },
+            "links": [
+              {
+                "title": "API \u30C9\u30AD\u30E5\u30E1\u30F3\u30C8",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/default-http-streaming.md",
+                "isCustom": false
+              }
+            ],
+            "line": 114,
+            "column": 8
+          }
+        }
+      ],
+      "features": []
+    }
+  ],
+  "rules": {
+    "NuGet.0004": {
+      "id": "NuGet.0004",
+      "isFeature": false,
+      "description": "NuGet \u30D1\u30C3\u30B1\u30FC\u30B8\u306B\u30BB\u30AD\u30E5\u30EA\u30C6\u30A3\u306E\u8106\u5F31\u6027\u304C\u542B\u307E\u308C\u3066\u3044\u307E\u3059\u3002\n\n\u30D1\u30C3\u30B1\u30FC\u30B8\u306F\u3001\u65E2\u77E5\u306E\u30BB\u30AD\u30E5\u30EA\u30C6\u30A3\u306E\u8106\u5F31\u6027\u3092\u89E3\u6C7A\u3059\u308B\u65B0\u3057\u3044\u30D0\u30FC\u30B8\u30E7\u30F3\u306B\u30A2\u30C3\u30D7\u30B0\u30EC\u30FC\u30C9\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\u3002",
+      "label": "NuGet \u30D1\u30C3\u30B1\u30FC\u30B8\u306B\u30BB\u30AD\u30E5\u30EA\u30C6\u30A3\u306E\u8106\u5F31\u6027\u304C\u542B\u307E\u308C\u3066\u3044\u307E\u3059",
+      "severity": "Optional",
+      "effort": 1
+    },
+    "Project.0002": {
+      "id": "Project.0002",
+      "isFeature": false,
+      "description": "\u30D7\u30ED\u30B8\u30A7\u30AF\u30C8\u306E\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF\u306F\u3001\u3053\u306E\u30A2\u30C3\u30D7\u30B0\u30EC\u30FC\u30C9\u7528\u306B\u9078\u629E\u3057\u305F\u65B0\u3057\u3044\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF\u306B\u5909\u66F4\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059\u3002\n\n\u30A2\u30C3\u30D7\u30B0\u30EC\u30FC\u30C9\u4E2D\u3001\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF\u306F\u3001\u8A72\u5F53\u3059\u308B\u5834\u5408\u3001\u5BFE\u5FDC\u3059\u308B\u30D7\u30E9\u30C3\u30C8\u30D5\u30A9\u30FC\u30E0\u306B\u8ABF\u6574\u3055\u308C\u307E\u3059\u3002\u5834\u5408\u306B\u3088\u3063\u3066\u306F\u3001\u6700\u65B0\u306E .NET \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF (Windows\u3001iOS\u3001Android \u306A\u3069) \u3067\u72EC\u81EA\u306E\u30D7\u30E9\u30C3\u30C8\u30D5\u30A9\u30FC\u30E0\u3092\u6301\u3064\u3088\u3046\u306B\u306A\u3063\u305F\u6A5F\u80FD\u3092\u4F7F\u7528\u3057\u3066\u3044\u305F\u5834\u5408\u3001\u30A2\u30C3\u30D7\u30B0\u30EC\u30FC\u30C9\u5F8C\u306B\u30D7\u30ED\u30B8\u30A7\u30AF\u30C8\u3067\u8907\u6570\u306E\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF\u304C\u767A\u751F\u3059\u308B\u5834\u5408\u304C\u3042\u308A\u307E\u3059\u3002",
+      "label": "\u30D7\u30ED\u30B8\u30A7\u30AF\u30C8\u306E\u30BF\u30FC\u30B2\u30C3\u30C8 \u30D5\u30EC\u30FC\u30E0\u30EF\u30FC\u30AF\u3092\u5909\u66F4\u3059\u308B\u5FC5\u8981\u304C\u3042\u308B",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": ".NET Framework\u304B\u3089 .NET \u3078\u306E\u79FB\u690D\u306E\u6982\u8981",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265227",
+          "isCustom": false
+        },
+        {
+          "title": ".NET \u30D7\u30ED\u30B8\u30A7\u30AF\u30C8 SDK",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265226",
+          "isCustom": false
+        }
+      ]
+    },
+    "Api.0003": {
+      "id": "Api.0003",
+      "isFeature": false,
+      "description": "\u9078\u629E\u3057\u305F .NET \u30D0\u30FC\u30B8\u30E7\u30F3\u3067 API \u306E\u52D5\u4F5C\u304C\u5909\u66F4\u3055\u308C\u3066\u3044\u307E\u3059\u3002\u518D\u30B3\u30F3\u30D1\u30A4\u30EB\u3092\u5FC5\u8981\u3068\u305B\u305A\u306B\u30B3\u30FC\u30C9\u3068\u30D0\u30A4\u30CA\u30EA\u306E\u52D5\u4F5C\u304C\u5B9F\u884C\u6642\u306B\u7570\u306A\u308B\u5834\u5408\u304C\u3042\u308A\u307E\u3059\u304C\u3001\u65B0\u3057\u3044\u52D5\u4F5C\u304C\u671B\u307E\u3057\u304F\u306A\u304F\u3001\u66F4\u65B0\u304C\u5FC5\u8981\u306B\u306A\u308B\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002",
+      "label": "\u9078\u629E\u3057\u305F .NET \u30D0\u30FC\u30B8\u30E7\u30F3\u3067\u306E\u52D5\u4F5C\u306E\u5909\u66F4",
+      "severity": "Potential",
+      "effort": 1
+    },
+    "Api.0001": {
+      "id": "Api.0001",
+      "isFeature": false,
+      "description": "\u9078\u629E\u3057\u305F .NET \u30D0\u30FC\u30B8\u30E7\u30F3\u3067\u306F API \u306E\u30D0\u30A4\u30CA\u30EA\u306B\u4E92\u63DB\u6027\u304C\u3042\u308A\u307E\u305B\u3093\u3002\u53E4\u3044\u30D0\u30A4\u30CA\u30EA\u306E\u8AAD\u307F\u8FBC\u307F\u3084\u5B9F\u884C\u3092\u59A8\u3052\u308B\u5F62\u3067 API \u304C\u5909\u66F4\u3055\u308C\u3066\u3044\u308B\u305F\u3081\u3001\u65E2\u5B58\u306E\u30D0\u30A4\u30CA\u30EA\u306B\u5F71\u97FF\u3057\u3001\u591A\u304F\u306E\u5834\u5408\u3001\u518D\u30B3\u30F3\u30D1\u30A4\u30EB\u304C\u5FC5\u8981\u306B\u306A\u308A\u307E\u3059\u3002",
+      "label": "\u9078\u629E\u3057\u305F .NET \u30D0\u30FC\u30B8\u30E7\u30F3\u3067\u306F\u30D0\u30A4\u30CA\u30EA\u306B\u4E92\u63DB\u6027\u304C\u3042\u308A\u307E\u305B\u3093",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": ".NET \u306E\u7834\u58CA\u7684\u5909\u66F4",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262679",
+          "isCustom": false
+        }
+      ]
+    },
+    "NuGet.0005": {
+      "id": "NuGet.0005",
+      "isFeature": false,
+      "description": "NuGet \u30D1\u30C3\u30B1\u30FC\u30B8\u306F\u975E\u63A8\u5968\u3067\u3059\u3002\n\n\u305D\u306E\u30C9\u30AD\u30E5\u30E1\u30F3\u30C8\u306B\u30A2\u30AF\u30BB\u30B9\u3057\u3001\u3053\u306E\u30D1\u30C3\u30B1\u30FC\u30B8\u306B\u3088\u3063\u3066\u63D0\u4F9B\u3055\u308C\u308B\u6A5F\u80FD\u306E\u7F6E\u304D\u63DB\u3048\u306B\u95A2\u3059\u308B\u30AC\u30A4\u30C0\u30F3\u30B9\u304C\u3042\u308B\u304B\u3069\u3046\u304B\u3092\u78BA\u8A8D\u3057\u307E\u3059\u3002",
+      "label": "NuGet \u30D1\u30C3\u30B1\u30FC\u30B8\u306F\u975E\u63A8\u5968\u3067\u3059",
+      "severity": "Optional",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262531",
+          "isCustom": false
+        }
+      ]
+    }
+  }
+}

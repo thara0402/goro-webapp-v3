@@ -1,0 +1,334 @@
+{
+  "packageGovernance": {
+    "totalDistinctPackages": 9,
+    "totalVersionDriftInstances": 0,
+    "targetFramework": "net11.0",
+    "packages": [
+      {
+        "name": "AutoMapper",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "17.0.0",
+        "isCompatible": true,
+        "description": "NuGet \u30D1\u30C3\u30B1\u30FC\u30B8\u306B\u30BB\u30AD\u30E5\u30EA\u30C6\u30A3\u306E\u8106\u5F31\u6027\u304C\u542B\u307E\u308C\u3066\u3044\u307E\u3059",
+        "versions": [
+          {
+            "version": "16.2.0",
+            "projects": [
+              "goro-webapp"
+            ],
+            "isRecommended": false
+          }
+        ],
+        "upgrade": {
+          "newVersion": "17.0.0"
+        }
+      },
+      {
+        "name": "Azure.Extensions.AspNetCore.Configuration.Secrets",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "1.5.2",
+        "isCompatible": true,
+        "description": "",
+        "versions": [
+          {
+            "version": "1.5.2",
+            "projects": [
+              "goro-webapp"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.ApplicationInsights.AspNetCore",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "3.1.2",
+        "isCompatible": true,
+        "description": "",
+        "versions": [
+          {
+            "version": "3.1.2",
+            "projects": [
+              "goro-webapp"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.Azure.Cosmos",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "3.62.1",
+        "isCompatible": true,
+        "description": "",
+        "versions": [
+          {
+            "version": "3.62.1",
+            "projects": [
+              "goro-webapp"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Microsoft.NET.Test.Sdk",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "18.0.1",
+        "isCompatible": true,
+        "description": "",
+        "versions": [
+          {
+            "version": "18.0.1",
+            "projects": [
+              "goro-webapp.Tests"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Moq",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "4.20.72",
+        "isCompatible": true,
+        "description": "",
+        "versions": [
+          {
+            "version": "4.20.72",
+            "projects": [
+              "goro-webapp.Tests"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "MSTest.TestAdapter",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "4.0.2",
+        "isCompatible": false,
+        "description": "NuGet \u30D1\u30C3\u30B1\u30FC\u30B8\u306F\u975E\u63A8\u5968\u3067\u3059",
+        "versions": [
+          {
+            "version": "4.0.2",
+            "projects": [
+              "goro-webapp.Tests"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "MSTest.TestFramework",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "4.0.2",
+        "isCompatible": false,
+        "description": "NuGet \u30D1\u30C3\u30B1\u30FC\u30B8\u306F\u975E\u63A8\u5968\u3067\u3059",
+        "versions": [
+          {
+            "version": "4.0.2",
+            "projects": [
+              "goro-webapp.Tests"
+            ],
+            "isRecommended": true
+          }
+        ]
+      },
+      {
+        "name": "Newtonsoft.Json",
+        "totalProjectCount": 1,
+        "distinctVersionCount": 1,
+        "recommendedVersion": "13.0.4",
+        "isCompatible": true,
+        "description": "",
+        "versions": [
+          {
+            "version": "13.0.4",
+            "projects": [
+              "goro-webapp"
+            ],
+            "isRecommended": true
+          }
+        ]
+      }
+    ]
+  },
+  "projects": [
+    {
+      "name": "goro-webapp",
+      "path": "goro-webapp\\goro-webapp.csproj",
+      "isSdk": true,
+      "currentFrameworks": [
+        "net10.0"
+      ],
+      "targetFramework": "net11.0",
+      "dependencies": {
+        "packages": [
+          {
+            "name": "AutoMapper",
+            "version": "16.2.0",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "goro-webapp\\goro-webapp.csproj"
+              }
+            ],
+            "description": "NuGet \u30D1\u30C3\u30B1\u30FC\u30B8\u306B\u30BB\u30AD\u30E5\u30EA\u30C6\u30A3\u306E\u8106\u5F31\u6027\u304C\u542B\u307E\u308C\u3066\u3044\u307E\u3059",
+            "compatibility": "valid",
+            "recommendedVersion": "17.0.0",
+            "upgrade": {
+              "newVersion": "17.0.0"
+            }
+          },
+          {
+            "name": "Azure.Extensions.AspNetCore.Configuration.Secrets",
+            "version": "1.5.2",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "goro-webapp\\goro-webapp.csproj"
+              }
+            ],
+            "description": "",
+            "compatibility": "valid",
+            "recommendedVersion": ""
+          },
+          {
+            "name": "Microsoft.ApplicationInsights.AspNetCore",
+            "version": "3.1.2",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "goro-webapp\\goro-webapp.csproj"
+              }
+            ],
+            "description": "",
+            "compatibility": "valid",
+            "recommendedVersion": ""
+          },
+          {
+            "name": "Microsoft.Azure.Cosmos",
+            "version": "3.62.1",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "goro-webapp\\goro-webapp.csproj"
+              }
+            ],
+            "description": "",
+            "compatibility": "valid",
+            "recommendedVersion": ""
+          },
+          {
+            "name": "Newtonsoft.Json",
+            "version": "13.0.4",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "goro-webapp\\goro-webapp.csproj"
+              }
+            ],
+            "description": "",
+            "compatibility": "valid",
+            "recommendedVersion": ""
+          }
+        ],
+        "assemblies": [],
+        "projectReferences": [],
+        "frameworkReferences": []
+      }
+    },
+    {
+      "name": "goro-webapp.Tests",
+      "path": "goro-webapp.Tests\\goro-webapp.Tests.csproj",
+      "isSdk": true,
+      "currentFrameworks": [
+        "net10.0"
+      ],
+      "targetFramework": "net11.0",
+      "dependencies": {
+        "packages": [
+          {
+            "name": "Moq",
+            "version": "4.20.72",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "definedIn": [
+              {
+                "path": "goro-webapp.Tests\\goro-webapp.Tests.csproj"
+              }
+            ],
+            "description": "",
+            "compatibility": "valid",
+            "recommendedVersion": ""
+          },
+          {
+            "name": "MSTest.TestFramework",
+            "version": "4.0.2",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "description": "NuGet \u30D1\u30C3\u30B1\u30FC\u30B8\u306F\u975E\u63A8\u5968\u3067\u3059",
+            "compatibility": "newVersionNeeded",
+            "recommendedVersion": ""
+          },
+          {
+            "name": "Microsoft.NET.Test.Sdk",
+            "version": "18.0.1",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "description": "",
+            "compatibility": "valid",
+            "recommendedVersion": ""
+          },
+          {
+            "name": "MSTest.TestAdapter",
+            "version": "4.0.2",
+            "isTransitive": false,
+            "isGlobal": false,
+            "isImplicit": false,
+            "description": "NuGet \u30D1\u30C3\u30B1\u30FC\u30B8\u306F\u975E\u63A8\u5968\u3067\u3059",
+            "compatibility": "newVersionNeeded",
+            "recommendedVersion": ""
+          }
+        ],
+        "assemblies": [],
+        "projectReferences": [
+          {
+            "name": "goro-webapp",
+            "isTransitive": false,
+            "definedIn": [
+              {
+                "path": "goro-webapp.Tests\\goro-webapp.Tests.csproj"
+              }
+            ],
+            "referencedProjectPath": "goro-webapp\\goro-webapp.csproj",
+            "compatibility": "valid"
+          }
+        ],
+        "frameworkReferences": []
+      }
+    }
+  ]
+}
