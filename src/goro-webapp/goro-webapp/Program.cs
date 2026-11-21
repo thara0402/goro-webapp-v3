@@ -1,7 +1,7 @@
 using Azure.Identity;
+using Azure.Monitor.OpenTelemetry.AspNetCore;
 using goro_webapp.Infrastructure;
 using goro_webapp.Models;
-using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 using Microsoft.Azure.Cosmos.Fluent;
 
 // アプリケーションの設定とサービス登録を行うビルダーを作成する。
@@ -14,7 +14,8 @@ if (!builder.Environment.IsDevelopment())
 }
 builder.Services.AddControllersWithViews();
 builder.Services.AddOptions<MySettings>().Bind(builder.Configuration.GetSection("WebApp"));
-builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = builder.Configuration["WebApp:AppInsightsConnectionString"] });
+builder.Services.AddOpenTelemetry().UseAzureMonitor(options =>
+    options.ConnectionString = builder.Configuration["WebApp:AppInsightsConnectionString"]);
 builder.Services.AddSingleton(new CosmosClientBuilder(builder.Configuration["WebApp:CosmosConnection"])
     .WithConnectionModeDirect()
     .Build());
